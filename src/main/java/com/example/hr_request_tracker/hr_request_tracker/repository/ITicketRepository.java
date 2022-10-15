@@ -10,5 +10,7 @@ public interface ITicketRepository {
 	public List<Ticket> findAll();
 	public int save(final Ticket user);
 	public int updateByID(final Ticket user);
+	public int updateAssignee(final int id, final String assignee);
+	public int updateStatus(final int id, final String status);
 	public int deleteByID(final int id);
 }
