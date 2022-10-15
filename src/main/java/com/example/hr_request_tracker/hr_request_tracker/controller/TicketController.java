@@ -38,8 +38,12 @@ public class TicketController {
 	@PostMapping("/tickets")
 	public int save(final HttpServletRequest request) throws IOException {
 		final BufferedReader body = request.getReader();
-
-		return service.save(body);
+		
+		if(service.save(body) <= 0) {
+			throw new IOException("Something went wrong in the database.");
+		} else {
+			return 1;
+		}
 	}
 	
 	@PostMapping("/tickets/update/{id}")
@@ -50,21 +54,39 @@ public class TicketController {
 			@RequestParam("description") final String description,
 			@RequestParam("tracker") final String tracker) throws IOException {
 		
-		return service.update(new Ticket(id, assignee, status, subject, description, tracker));
+		if(service.update(new Ticket(id, assignee, status, subject, description, tracker)) <= 0) {
+			throw new IOException("Something went wrong in the database");
+		} else {
+			return 1;
+		}
 	}
 	
 	@PostMapping("/tickets/update/assignee/{id}")
-	public int updateAssignee(@PathVariable final int id, @RequestParam("assignee") final String assignee) {
-		return service.updateAssignee(assignee);
+	public int updateAssignee(@PathVariable final int id, 
+			@RequestParam("assignee") final String assignee) throws IOException {
+		if(service.updateAssignee(assignee) <= 0) {
+			throw new IOException("Something went wrong in the database.");
+		} else {
+			return 1;
+		}
 	}
 	
 	@PostMapping("/tickets/update/status/{id}")
-	public int updateStatus(@PathVariable final int id, @RequestParam("status") final String status) {
-		return service.updateStatus(status);
+	public int updateStatus(@PathVariable final int id, 
+			@RequestParam("status") final String status) throws IOException {
+		if(service.updateStatus(status) <= 0) {
+			throw new IOException("Something went wrong in the database.");
+		} else {		
+			return 1;
+		}
 	}
 	
 	@DeleteMapping("/tickets/delete/{id}")
 	public int deleteById(@PathVariable final int id) throws IOException {
-		return service.deleteById(id);
+		if(service.deleteById(id) <= 0) {
+			throw new IOException("Something went wrong in the database.");
+		} else {	
+			return 1;
+		}
 	}
 }
