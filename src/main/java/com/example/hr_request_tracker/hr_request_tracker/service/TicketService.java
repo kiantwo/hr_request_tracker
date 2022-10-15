@@ -1,6 +1,4 @@
 package com.example.hr_request_tracker.hr_request_tracker.service;
-import java.io.BufferedReader;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,13 +6,12 @@ import com.example.hr_request_tracker.hr_request_tracker.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.repository.ITicketRepository;
 import com.google.gson.Gson;
 
-
-
-
+@Service
 public class TicketService implements ITicketService{
 	private ITicketRepository repository;
 	private Gson gson;
 	
+	@Autowired
 	public TicketService (final ITicketRepository repository) {
 		this.repository = repository;
 		this.gson = new Gson();			
@@ -34,11 +31,8 @@ public class TicketService implements ITicketService{
 		return repository.deleteByID(id);
 	}
 	
-	public int save(final BufferedReader body)
+	public int save(final Ticket ticket)
 	{
-		//from just a simple requestBody, we transform it to a class using fromJson
-		final Ticket ticket= gson.fromJson(body, Ticket.class);
-		
 		return repository.save(ticket);
 	}
 	
