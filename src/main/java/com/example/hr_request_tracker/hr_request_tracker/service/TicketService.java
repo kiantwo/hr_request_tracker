@@ -28,6 +28,7 @@ public class TicketService implements ITicketService{
 	{
 		return gson.toJson(repository.findAll());
 	}
+	
 	public int deleteById(final int id)
 	{
 		return repository.deleteByID(id);
@@ -46,12 +47,13 @@ public class TicketService implements ITicketService{
 		return repository.updateByID(ticket);
 	}
 	
-	public int updateStatus (final Ticket ticket) {
-		return repository.updateByID(ticket);
+	
+	public int updateStatus (final int id, final String status) {
+		return repository.updateStatus(id, status);
 	}
 	
-	public int updateAssignee (final Ticket ticket) {
-		return repository.updateByID(ticket);
+	public int updateAssignee (final int id, final String assignee) {
+		return repository.updateAssignee(id, assignee);
 	}
 	
 	
