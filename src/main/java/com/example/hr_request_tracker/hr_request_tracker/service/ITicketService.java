@@ -9,5 +9,7 @@ public interface ITicketService {
 	public String findAll();
 	public int save(final BufferedReader body);
 	public int update(final Ticket ticket);
+	public int updateAssignee(final String assignee);
+	public int updateStatus(final String status);
 	public int deleteById(final int id);
 }
