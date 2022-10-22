@@ -9,48 +9,48 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.hr_request_tracker.hr_request_tracker.model.User;
-import com.example.hr_request_tracker.hr_request_tracker.service.IUserService;
+import com.example.hr_request_tracker.hr_request_tracker.model.Role;
+import com.example.hr_request_tracker.hr_request_tracker.service.IRoleService;
 
 @RestController
-public class UserController {
-	private IUserService service;
+public class RoleController {
+	private IRoleService service;
 	
 	@Autowired
-	public UserController(IUserService service) {
+	public RoleController(final IRoleService service) {
 		this.service = service;
 	}
 	
-	@RequestMapping("/user/{id}")
-	public String getById(@PathVariable final int id) {
+	@RequestMapping("/role/{id}")
+	public String getByID(final int id) {
 		return service.findById(id);
 	}
 	
-	@RequestMapping("/users")
+	@RequestMapping("/roles")
 	public String getAll() {
 		return service.findAll();
 	}
 	
-	@PostMapping("/users")
+	@PostMapping("/roles")
 	public int save() throws IOException {		
-		if(service.save(new User()) <= 0) {
+		if(service.save(new Role()) <= 0) {
 			throw new IOException("Something went wrong in the database.");
 		} else {
 			return 1;
 		}
 	}
 	
-	@PostMapping("/users/update/{id}")
+	@PostMapping("/roles/update/{id}")
 	public int update(@PathVariable final int id) throws IOException {
 		
-		if(service.update(new User()) <= 0) {
+		if(service.update(new Role()) <= 0) {
 			throw new IOException("Something went wrong in the database");
 		} else {
 			return 1;
 		}
 	}
 	
-	@DeleteMapping("/users/delete/{id}")
+	@DeleteMapping("/roles/delete/{id}")
 	public int deleteById(@PathVariable final int id) throws IOException {
 		if(service.deleteById(id) <= 0) {
 			throw new IOException("Something went wrong in the database.");
