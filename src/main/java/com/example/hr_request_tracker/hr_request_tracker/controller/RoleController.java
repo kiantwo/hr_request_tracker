@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hr_request_tracker.hr_request_tracker.model.Role;
@@ -22,7 +23,7 @@ public class RoleController {
 	}
 	
 	@RequestMapping("/role/{id}")
-	public String getByID(final int id) {
+	public String getByID(@PathVariable final int id) {
 		return service.findById(id);
 	}
 	
@@ -32,8 +33,10 @@ public class RoleController {
 	}
 	
 	@PostMapping("/roles")
-	public int save() throws IOException {		
-		if(service.save(new Role()) <= 0) {
+	public int save(@RequestParam("role_id") final int id, 
+			@RequestParam("role") final String role, 
+			@RequestParam("role_abbv") final String roleAbbv) throws IOException {		
+		if(service.save(new Role(id, role, roleAbbv)) <= 0) {
 			throw new IOException("Something went wrong in the database.");
 		} else {
 			return 1;
@@ -41,9 +44,11 @@ public class RoleController {
 	}
 	
 	@PostMapping("/roles/update/{id}")
-	public int update(@PathVariable final int id) throws IOException {
+	public int update(@PathVariable final int id, 
+			@RequestParam("role") final String role, 
+			@RequestParam("role_abbv") final String roleAbbv) throws IOException {
 		
-		if(service.update(new Role()) <= 0) {
+		if(service.update(new Role(id, role, roleAbbv)) <= 0) {
 			throw new IOException("Something went wrong in the database");
 		} else {
 			return 1;
