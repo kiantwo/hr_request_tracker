@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hr_request_tracker.hr_request_tracker.model.TicketType;
@@ -32,8 +33,10 @@ public class TicketTypeController {
 	}
 		
 	@PostMapping("/ticket-types")
-	public int save() throws IOException {		
-		if(service.save(new TicketType()) <= 0) {
+	public int save(@RequestParam("type_id") final int id, 
+			@RequestParam("type_name") final String typeName, 
+			@RequestParam("description") final String description) throws IOException {		
+		if(service.save(new TicketType(id, typeName, description)) <= 0) {
 			throw new IOException("Something went wrong in the database.");
 		} else {
 			return 1;
@@ -41,9 +44,11 @@ public class TicketTypeController {
 	}
 	
 	@PostMapping("/ticket-types/update/{id}")
-	public int update(@PathVariable final int id) throws IOException {
+	public int update(@PathVariable final int id, 
+			@RequestParam("type_name") final String typeName, 
+			@RequestParam("description") final String description) throws IOException {
 		
-		if(service.update(new TicketType()) <= 0) {
+		if(service.update(new TicketType(id, typeName, description)) <= 0) {
 			throw new IOException("Something went wrong in the database");
 		} else {
 			return 1;
