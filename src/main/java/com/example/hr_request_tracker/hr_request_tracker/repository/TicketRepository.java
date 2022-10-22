@@ -16,7 +16,7 @@ public class TicketRepository implements ITicketRepository{
 
 	public Ticket findById(int id) {
 		try {
-		final String sql = "SELECT * from ticket_module where ticketid=?";
+		final String sql = "SELECT * from ticket where ticketid=?";
 		final Ticket result = template.queryForObject(sql, BeanPropertyRowMapper.newInstance(Ticket.class), id);
 		
 		return result;
@@ -26,39 +26,39 @@ public class TicketRepository implements ITicketRepository{
 	}
 
 	public List<Ticket> findAll() {
-		final String sql = "SELECT * from ticket_module";
+		final String sql = "SELECT * from ticket";
 		final List<Ticket> result = template.query(sql, BeanPropertyRowMapper.newInstance(Ticket.class));
 		return result;
 	}
 
 	public int save(Ticket ticket) {
-		final String sql = "INSERT INTO ticket_module (ticketid,asignee,status,subject,description,tracker) VALUES (?, ?, ?, ?, ?, ?)";
+		final String sql = "INSERT INTO ticket (ticketid,asignee,status,subject,description,tracker) VALUES (?, ?, ?, ?, ?, ?)";
 		final int result = template.update(sql, ticket.getTicketID(), ticket.getAssignee(), ticket.getStatus(),ticket.getSubject(),ticket.getDescription(),ticket.getTracker());
 		
 		return result;
 	}
 
 	public int updateByID(Ticket ticket) {
-		final String sql = "UPDATE ticket_module SET asignee=?, status=?, subject=?, description=?, tracker=? WHERE ticketid=?";
+		final String sql = "UPDATE ticket SET asignee=?, status=?, subject=?, description=?, tracker=? WHERE ticketid=?";
 		final int result = template.update(sql, ticket.getAssignee(), ticket.getStatus(),ticket.getSubject(),ticket.getDescription(),ticket.getTracker(), ticket.getTicketID());
 		
 		return result;
 	}
 
 	public int deleteByID(int id) {
-		final String sql = "DELETE from ticket_module where ticketid=?";
+		final String sql = "DELETE from ticket where ticketid=?";
 		final int result = template.update(sql,id);
 		return result;
 	}
 
 	public int updateAssignee(int id, String assignee) {
-		final String sql = "UPDATE ticket_module SET asignee=? WHERE ticketid=?";
+		final String sql = "UPDATE ticket SET asignee=? WHERE ticketid=?";
 		final int result = template.update(sql,assignee,id);
 		return result;
 	}
 
 	public int updateStatus(int id, String status) {
-		final String sql = "UPDATE ticket_module SET status=? WHERE ticketid=?";
+		final String sql = "UPDATE ticket SET status=? WHERE ticketid=?";
 		final int result = template.update(sql,status,id);
 		return result;
 	}
