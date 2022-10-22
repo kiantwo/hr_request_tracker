@@ -1,11 +1,12 @@
 package com.example.hr_request_tracker.hr_request_tracker.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 
 import com.example.hr_request_tracker.hr_request_tracker.model.TicketType;
 import com.example.hr_request_tracker.hr_request_tracker.repository.ITicketTypeRepository;
 import com.google.gson.Gson;
+
 @Service
 public class TicketTypeService implements ITicketTypeService{
 	private ITicketTypeRepository repository;
