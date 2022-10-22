@@ -23,7 +23,7 @@ public class TicketTypeController {
 	}
 	
 	@RequestMapping("/ticket-type/{id}")
-	public String getByID(final int id) {
+	public String getByID(@PathVariable final int id) {
 		return service.findById(id);
 	}
 	
