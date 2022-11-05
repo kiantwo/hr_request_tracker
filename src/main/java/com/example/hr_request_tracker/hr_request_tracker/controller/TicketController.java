@@ -1,7 +1,5 @@
 package com.example.hr_request_tracker.hr_request_tracker.controller;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,60 +31,27 @@ public class TicketController {
 	}
 	
 	@PostMapping("/tickets")
-	public int save(@RequestParam("ticketid") final int id,
-			@RequestParam("assignee") final String assignee,
-			@RequestParam("status") final String status,
-			@RequestParam("subject") final String subject,
-			@RequestParam("description") final String description,
-			@RequestParam("tracker") final String tracker) throws IOException {		
-		if(service.save(new Ticket(id, assignee, status, subject, description, tracker)) <= 0) {
-			throw new IOException("Something went wrong in the database.");
-		} else {
-			return 1;
-		}
+	public int save(Ticket ticket)  {
+		return service.save(ticket);
 	}
 	
 	@PostMapping("/tickets/update/{id}")
-	public int update(@PathVariable final int id, 
-			@RequestParam("assignee") final String assignee,
-			@RequestParam("status") final String status,
-			@RequestParam("subject") final String subject,
-			@RequestParam("description") final String description,
-			@RequestParam("tracker") final String tracker) throws IOException {
-		
-		if(service.update(new Ticket(id, assignee, status, subject, description, tracker)) <= 0) {
-			throw new IOException("Something went wrong in the database");
-		} else {
-			return 1;
-		}
+	public int update(Ticket ticket) {
+		return service.update(ticket);
 	}
 	
 	@PostMapping("/tickets/update/assignee/{id}")
-	public int updateAssignee(@PathVariable final int id, 
-			@RequestParam("assignee") final String assignee) throws IOException {
-		if(service.updateAssignee(id, assignee) <= 0) {
-			throw new IOException("Something went wrong in the database.");
-		} else {
-			return 1;
-		}
+	public int updateAssignee(@PathVariable final int id, @RequestParam("assignee") final String assignee) {
+		return service.updateAssignee(id, assignee);
 	}
 	
 	@PostMapping("/tickets/update/status/{id}")
-	public int updateStatus(@PathVariable final int id, 
-			@RequestParam("status") final String status) throws IOException {
-		if(service.updateStatus(id, status) <= 0) {
-			throw new IOException("Something went wrong in the database.");
-		} else {		
-			return 1;
-		}
+	public int updateStatus(@PathVariable final int id, @RequestParam("status") final String status) {
+		return service.updateStatus(id, status);
 	}
 	
 	@DeleteMapping("/tickets/delete/{id}")
-	public int deleteById(@PathVariable final int id) throws IOException {
-		if(service.deleteById(id) <= 0) {
-			throw new IOException("Something went wrong in the database.");
-		} else {	
-			return 1;
-		}
+	public int deleteById(@PathVariable final int id) {
+		return service.deleteById(id);
 	}
 }
