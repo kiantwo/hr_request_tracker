@@ -1,25 +1,22 @@
 package com.example.hr_request_tracker.hr_request_tracker.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="ticket_module")
 public class Ticket {
+	@Id
 	private int ticketID;
+	@Column(name="asignee")
 	private String assignee;
 	private String status;
 	private String subject;
 	private String description;
 	private String tracker;
-	
-	public Ticket() {}
-	
-	public Ticket(final int id, final String assignee, final String status, 
-			final String subject, final String description, final String tracker) {
-		this.ticketID = id;
-		this.assignee = assignee;
-		this.status = status;
-		this.subject = subject;
-		this.description = description;
-		this.tracker = tracker;
-	}
-	
+		
 	public int getTicketID() {
 		return this.ticketID;
 	}
@@ -44,27 +41,27 @@ public class Ticket {
 		return this.tracker;
 	}
 	
-	public void setTicketID(final int id) {
+	public void setTicketID(int id) {
 		this.ticketID = id;
 	}
 	
-	public void setAssignee(final String assignee) {
+	public void setAssignee(String assignee) {
 		this.assignee = assignee;
 	}
 	
-	public void setStatus(final String status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	
-	public void setSubject(final String subject) {
+	public void setSubject(String subject) {
 		this.subject = subject;
 	}
 	
-	public void setDescription(final String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 	
-	public void setTracker(final String tracker) {
+	public void setTracker(String tracker) {
 		this.tracker = tracker;
 	}
 }

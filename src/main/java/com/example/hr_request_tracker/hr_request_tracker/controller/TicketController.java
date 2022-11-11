@@ -1,5 +1,8 @@
 package com.example.hr_request_tracker.hr_request_tracker.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,45 +16,41 @@ import com.example.hr_request_tracker.hr_request_tracker.service.ITicketService;
 
 @RestController
 public class TicketController {
-	private ITicketService service;
-	
 	@Autowired
-	public TicketController(final ITicketService service) {
-		this.service = service;
-	}
-	
+	private ITicketService service;
+		
 	@RequestMapping("/ticket/{id}")
-	public String getById(@PathVariable final int id) {
+	public Optional<Ticket> getById(@PathVariable int id) {
 		return service.findById(id);
 	}
 	
 	@RequestMapping("/tickets")
-	public String getAll() {
+	public List<Ticket> getAll() {
 		return service.findAll();
 	}
 	
-	@PostMapping("/tickets")
-	public int save(Ticket ticket)  {
+	@PostMapping("/tickets/create")
+	public Ticket save(Ticket ticket)  {
 		return service.save(ticket);
 	}
 	
-	@PostMapping("/tickets/update/{id}")
-	public int update(Ticket ticket) {
+	@PostMapping("/tickets/update")
+	public Ticket update(Ticket ticket) {
 		return service.update(ticket);
 	}
 	
-	@PostMapping("/tickets/update/assignee/{id}")
-	public int updateAssignee(@PathVariable final int id, @RequestParam("assignee") final String assignee) {
-		return service.updateAssignee(id, assignee);
-	}
-	
-	@PostMapping("/tickets/update/status/{id}")
-	public int updateStatus(@PathVariable final int id, @RequestParam("status") final String status) {
-		return service.updateStatus(id, status);
-	}
+//	@PostMapping("/tickets/update/assignee/{id}")
+//	public int updateAssignee(@PathVariable int id, @RequestParam("assignee") String assignee) {
+//		return service.updateAssignee(id, assignee);
+//	}
+//	
+//	@PostMapping("/tickets/update/status/{id}")
+//	public int updateStatus(@PathVariable int id, @RequestParam("status") String status) {
+//		return service.updateStatus(id, status);
+//	}
 	
 	@DeleteMapping("/tickets/delete/{id}")
-	public int deleteById(@PathVariable final int id) {
-		return service.deleteById(id);
+	public void deleteById(@PathVariable Integer id) {
+		service.deleteById(id);
 	}
 }

@@ -1,13 +1,16 @@
 package com.example.hr_request_tracker.hr_request_tracker.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.example.hr_request_tracker.hr_request_tracker.model.Ticket;
 
 public interface ITicketService {
-	public String findById(final int id);
-	public String findAll();
-	public int save(final Ticket ticket);
-	public int update(final Ticket ticket);
-	public int updateAssignee(final int id, final String assignee);
-	public int updateStatus(final int id, final String status);
-	public int deleteById(final int id);
+	public Optional<Ticket> findById(int id);
+	public List<Ticket> findAll();
+	public Ticket save(Ticket ticket);
+	public Ticket update(Ticket ticket);
+//	public int updateAssignee(int id, String assignee);
+//	public int updateStatus(int id, String status);
+	public void deleteById(Integer id);
 }

@@ -1,16 +1,14 @@
 package com.example.hr_request_tracker.hr_request_tracker.repository;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.example.hr_request_tracker.hr_request_tracker.model.Ticket;
 
-
-public interface ITicketRepository {
-	public Ticket findById(final int id);
-	public List<Ticket> findAll();
-	public int save(final Ticket ticket);
-	public int updateByID(final Ticket ticket);
-	public int updateAssignee(final int id, final String assignee);
-	public int updateStatus(final int id, final String status);
-	public int deleteByID(final int id);
+@Repository
+public interface ITicketRepository extends JpaRepository<Ticket, Integer> {
+//	public int updateByID(Ticket ticket);
+//	public int updateAssignee(int id, String assignee);
+//	public int updateStatus(int id, String status);
+//	public int deleteByID(int id);
 }
