@@ -6,22 +6,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ticket_module")
+@Table(name="ticket")
 public class Ticket {
 	@Id
+	@Column(name="ticket_id")
 	private int ticketID;
-	@Column(name="asignee")
-	private String assignee;
+	@Column(name="assignee_id")
+	private Integer assignee;
+	@Column(name="tracker_id")
+	private Integer tracker;
 	private String status;
 	private String subject;
 	private String description;
-	private String tracker;
-		
+
 	public int getTicketID() {
 		return this.ticketID;
 	}
 	
-	public String getAssignee() {
+	public Integer getAssignee() {
 		return this.assignee;
 	}
 	
@@ -37,7 +39,7 @@ public class Ticket {
 		return this.description;
 	}
 	
-	public String getTracker() {
+	public Integer getTracker() {
 		return this.tracker;
 	}
 	
@@ -45,7 +47,7 @@ public class Ticket {
 		this.ticketID = id;
 	}
 	
-	public void setAssignee(String assignee) {
+	public void setAssignee(Integer assignee) {
 		this.assignee = assignee;
 	}
 	
@@ -61,7 +63,7 @@ public class Ticket {
 		this.description = description;
 	}
 	
-	public void setTracker(String tracker) {
+	public void setTracker(Integer tracker) {
 		this.tracker = tracker;
 	}
 }

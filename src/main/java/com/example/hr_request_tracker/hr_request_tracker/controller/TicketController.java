@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.hr_request_tracker.hr_request_tracker.common.models.ApiResponse;
+import com.example.hr_request_tracker.hr_request_tracker.messages.TicketMessages;
 import com.example.hr_request_tracker.hr_request_tracker.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.service.ITicketService;
 
@@ -30,13 +32,25 @@ public class TicketController {
 	}
 	
 	@PostMapping("/tickets/create")
-	public Ticket save(Ticket ticket)  {
-		return service.save(ticket);
+	public ApiResponse save(Ticket ticket)  {
+		Ticket savedTicket = service.save(ticket);
+
+		if (savedTicket != null) {
+			return ApiResponse.CreateSuccess(savedTicket, TicketMessages.TICKET_SUCCESSFULLY_SAVED);
+		}
+
+		return ApiResponse.CreateError(TicketMessages.GENERIC_UNSUCCESSFUL_SAVE);
 	}
 	
 	@PostMapping("/tickets/update")
-	public Ticket update(Ticket ticket) {
-		return service.update(ticket);
+	public ApiResponse update(Ticket ticket) {
+		Ticket updatedTicket = service.save(ticket);
+		
+		if(updatedTicket != null) {
+			return ApiResponse.CreateSuccess(updatedTicket, TicketMessages.TICKET_SUCCESFULLY_UPDATED);
+		}
+		
+		return ApiResponse.CreateError(TicketMessages.GENERIC_UNSUCCESSFUL_SAVE);
 	}
 	
 //	@PostMapping("/tickets/update/assignee/{id}")
