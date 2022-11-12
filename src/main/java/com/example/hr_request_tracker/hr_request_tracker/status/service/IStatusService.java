@@ -10,5 +10,5 @@ public interface IStatusService {
 	public List<Status> findAll();
 	public Status save(Status status);
 	public Status update(Status status);
-	public void delete(Status status);
+	public void deleteById(int id);
 }

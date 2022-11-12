@@ -30,8 +30,8 @@ public class StatusService implements IStatusService {
 		return repository.save(status);
 	}
 	
-	public void delete(Status status) {
-		repository.delete(status);
+	public void deleteById(int status) {
+		repository.deleteById(status);
 	}
 	
 }
