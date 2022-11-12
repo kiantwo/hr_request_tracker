@@ -1,4 +1,4 @@
-package com.example.hr_request_tracker.hr_request_tracker.controller;
+package com.example.hr_request_tracker.hr_request_tracker.ticket.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hr_request_tracker.hr_request_tracker.common.models.ApiResponse;
-import com.example.hr_request_tracker.hr_request_tracker.messages.TicketMessages;
-import com.example.hr_request_tracker.hr_request_tracker.model.Ticket;
-import com.example.hr_request_tracker.hr_request_tracker.service.ITicketService;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.messages.TicketMessages;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.service.ITicketService;
 
 @RestController
 public class TicketController {

@@ -1,8 +1,8 @@
-package com.example.hr_request_tracker.hr_request_tracker.repository;
+package com.example.hr_request_tracker.hr_request_tracker.role.repository;
 
 import java.util.List;
 
-import com.example.hr_request_tracker.hr_request_tracker.model.Role;
+import com.example.hr_request_tracker.hr_request_tracker.role.model.Role;
 
 public interface IRoleRepository {
 	public Role findById(final int id);

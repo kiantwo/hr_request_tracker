@@ -1,4 +1,4 @@
-package com.example.hr_request_tracker.hr_request_tracker.service;
+package com.example.hr_request_tracker.hr_request_tracker.ticket_type.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.hr_request_tracker.hr_request_tracker.model.TicketType;
-import com.example.hr_request_tracker.hr_request_tracker.repository.ITicketTypeRepository;
+import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.TicketType;
+import com.example.hr_request_tracker.hr_request_tracker.ticket_type.repository.ITicketTypeRepository;
 
 @Service
 public class TicketTypeService implements ITicketTypeService{

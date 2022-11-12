@@ -1,4 +1,4 @@
-package com.example.hr_request_tracker.hr_request_tracker.messages;
+package com.example.hr_request_tracker.hr_request_tracker.ticket.messages;
 
 import com.example.hr_request_tracker.hr_request_tracker.common.Messages;
 

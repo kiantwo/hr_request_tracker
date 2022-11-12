@@ -1,6 +1,6 @@
-package com.example.hr_request_tracker.hr_request_tracker.service;
+package com.example.hr_request_tracker.hr_request_tracker.role.service;
 
-import com.example.hr_request_tracker.hr_request_tracker.model.Role;
+import com.example.hr_request_tracker.hr_request_tracker.role.model.Role;
 
 public interface IRoleService {
 	public String findById(final int id);

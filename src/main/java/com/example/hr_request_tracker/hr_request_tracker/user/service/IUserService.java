@@ -1,9 +1,9 @@
-package com.example.hr_request_tracker.hr_request_tracker.service;
+package com.example.hr_request_tracker.hr_request_tracker.user.service;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.example.hr_request_tracker.hr_request_tracker.model.User;
+import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 
 public interface IUserService {
 	public Optional<User> findById(Integer id);

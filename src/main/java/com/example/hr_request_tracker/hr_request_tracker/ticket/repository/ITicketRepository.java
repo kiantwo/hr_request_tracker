@@ -1,9 +1,9 @@
-package com.example.hr_request_tracker.hr_request_tracker.repository;
+package com.example.hr_request_tracker.hr_request_tracker.ticket.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.hr_request_tracker.hr_request_tracker.model.Ticket;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 
 @Repository
 public interface ITicketRepository extends JpaRepository<Ticket, Integer> {

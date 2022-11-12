@@ -1,4 +1,4 @@
-package com.example.hr_request_tracker.hr_request_tracker.model;
+package com.example.hr_request_tracker.hr_request_tracker.role.model;
 
 public class Role {
 	private int roleID;

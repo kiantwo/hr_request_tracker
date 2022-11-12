@@ -1,12 +1,12 @@
-package com.example.hr_request_tracker.hr_request_tracker.service;
+package com.example.hr_request_tracker.hr_request_tracker.ticket.service;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.hr_request_tracker.hr_request_tracker.model.Ticket;
-import com.example.hr_request_tracker.hr_request_tracker.repository.ITicketRepository;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.repository.ITicketRepository;
 
 @Service
 public class TicketService implements ITicketService{

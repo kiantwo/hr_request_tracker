@@ -1,3 +1,4 @@
+package com.example.hr_request_tracker.hr_request_tracker.ticket.repository;
 //package com.example.hr_request_tracker.hr_request_tracker.repository;
 //
 //import org.springframework.beans.factory.annotation.Autowired;

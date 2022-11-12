@@ -1,4 +1,4 @@
-package com.example.hr_request_tracker.hr_request_tracker.controller;
+package com.example.hr_request_tracker.hr_request_tracker.user.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.hr_request_tracker.hr_request_tracker.model.User;
-import com.example.hr_request_tracker.hr_request_tracker.service.IUserService;
+import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
+import com.example.hr_request_tracker.hr_request_tracker.user.service.IUserService;
 
 @RestController
 public class UserController {

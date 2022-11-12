@@ -1,9 +1,9 @@
-package com.example.hr_request_tracker.hr_request_tracker.service;
+package com.example.hr_request_tracker.hr_request_tracker.ticket.service;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.example.hr_request_tracker.hr_request_tracker.model.Ticket;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 
 public interface ITicketService {
 	public Optional<Ticket> findById(int id);

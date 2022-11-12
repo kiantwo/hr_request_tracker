@@ -1,4 +1,4 @@
-package com.example.hr_request_tracker.hr_request_tracker.controller;
+package com.example.hr_request_tracker.hr_request_tracker.ticket_type.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.hr_request_tracker.hr_request_tracker.model.TicketType;
-import com.example.hr_request_tracker.hr_request_tracker.service.ITicketTypeService;
+import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.TicketType;
+import com.example.hr_request_tracker.hr_request_tracker.ticket_type.service.ITicketTypeService;
 
 @RestController
 public class TicketTypeController {
