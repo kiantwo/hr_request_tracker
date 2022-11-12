@@ -44,7 +44,7 @@ public class TicketController {
 	
 	@PostMapping("/tickets/update")
 	public ApiResponse update(Ticket ticket) {
-		Ticket updatedTicket = service.save(ticket);
+		Ticket updatedTicket = service.update(ticket);
 		
 		if(updatedTicket != null) {
 			return ApiResponse.CreateSuccess(updatedTicket, TicketMessages.TICKET_SUCCESFULLY_UPDATED);
