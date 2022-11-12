@@ -24,6 +24,8 @@ DROP TABLE IF EXISTS `hr_request`.`user_ticket`;
 CREATE TABLE `hr_request`.`user_ticket`(
 	`assignee_id` INT NOT NULL,
     `tracker_id` INT NOT NULL,
+  
+  PRIMARY KEY(`assignee_id`, `tracker_id`),
   FOREIGN KEY (`assignee_id`) REFERENCES user(`user_id`),
   FOREIGN KEY (`tracker_id`) REFERENCES ticket_type(`type_id`));
 

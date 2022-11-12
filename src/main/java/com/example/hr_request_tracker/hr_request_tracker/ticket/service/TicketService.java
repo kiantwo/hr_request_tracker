@@ -9,7 +9,7 @@ import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.repository.ITicketRepository;
 
 @Service
-public class TicketService implements ITicketService{
+public class TicketService implements ITicketService {
 	@Autowired
 	private ITicketRepository repository;
 	

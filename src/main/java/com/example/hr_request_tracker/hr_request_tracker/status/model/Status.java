@@ -1,9 +1,15 @@
 package com.example.hr_request_tracker.hr_request_tracker.status.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 
 @Entity
 @Table(name="status")
@@ -14,6 +20,9 @@ public class Status {
 	@Column(name="status_name")
 	private String statusName;
 	private String description;
+	
+	@OneToMany(mappedBy = "status", cascade = CascadeType.ALL)
+	private Set<Ticket> tickets;
 	
 	public int getStatusID() {
 		return this.statusID;
@@ -26,7 +35,7 @@ public class Status {
 	public String getDescription() {
 		return this.description;
 	}
-	
+		
 	public void setStatusID(int statusID) {
 		this.statusID = statusID;
 	}
