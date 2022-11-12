@@ -38,11 +38,13 @@ INSERT into user_ticket(assignee_id, tracker_id) values(100, 209);
 INSERT into user_ticket(assignee_id, tracker_id) values(100, 210);
 INSERT into user_ticket(assignee_id, tracker_id) values(104, 211);
 
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status, description) values (300, 100, 200, "Request for salary increase", "Active", "");
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status, description) values (301, 101, 201, "Request for leave", "Cancelled", "Would like to take a vacation");
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status, description) values (302, 102, 203, "Conflict with colleague", "Inactive", "Keeps stealing my lunch");
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status, description) values (303, 103, 203, "Request for transfer of management", "Declined",  "Would like to manage different area");
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status, description) values (304, 100, 205,"Request for team building", "Approved", "New training and seminars");
+INSERT INTO status(status_id, status_name, description) values (400, "Active", "");
+INSERT INTO status(status_id, status_name, description) values (401, "Inactive", "");
+INSERT INTO status(status_id, status_name, description) values (402, "Canceled", "");
 
-
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description) values (300, 100, 200, "Request for salary increase", 400, "");
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description) values (301, 101, 201, "Request for leave", 402, "Would like to take a vacation");
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description) values (302, 102, 203, "Conflict with colleague", 401, "Keeps stealing my lunch");
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description) values (303, 103, 203, "Request for transfer of management", 402,  "Would like to manage different area");
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description) values (304, 100, 205,"Request for team building", 400, "New training and seminars");
 

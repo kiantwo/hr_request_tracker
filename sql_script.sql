@@ -27,19 +27,29 @@ CREATE TABLE `hr_request`.`user_ticket`(
   FOREIGN KEY (`assignee_id`) REFERENCES user(`user_id`),
   FOREIGN KEY (`tracker_id`) REFERENCES ticket_type(`type_id`));
 
+DROP TABLE IF EXISTS `hr_request`.`status`;
+
+CREATE TABLE `hr_request`.`status` (
+	`status_id` INT NOT NULL,
+    `status_name` VARCHAR(45) NOT NULL,
+    `description` VARCHAR(255) NOT NULL,
+	
+    PRIMARY KEY(`status_id`));
+
 DROP TABLE IF EXISTS `hr_request`.`ticket`;
 
 CREATE TABLE `hr_request`.`ticket` (
   `ticket_id` INT NOT NULL,
   `assignee_id` INT NOT NULL,
   `tracker_id` INT NOT NULL,
+  `status_id` INT NOT NULL,
   `subject` VARCHAR(45) NOT NULL,
   `description` VARCHAR(255) NULL,
-  `status` VARCHAR(45) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `expires_at` TIMESTAMP NULL,
     
   PRIMARY KEY (`ticket_id`),
   FOREIGN KEY (`assignee_id`) REFERENCES user(`user_id`),
-  FOREIGN KEY (`tracker_id`) REFERENCES ticket_type(`type_id`));
+  FOREIGN KEY (`tracker_id`) REFERENCES ticket_type(`type_id`),
+  FOREIGN KEY (`status_id`) REFERENCES status(`status_id`));
   
