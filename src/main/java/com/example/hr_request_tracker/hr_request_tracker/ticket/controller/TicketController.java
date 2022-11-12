@@ -64,7 +64,7 @@ public class TicketController {
 //	}
 	
 	@DeleteMapping("/tickets/delete/{id}")
-	public void deleteById(@PathVariable Integer id) {
-		service.deleteById(id);
+	public void delete(@PathVariable Integer id) {
+		service.delete(id);
 	}
 }

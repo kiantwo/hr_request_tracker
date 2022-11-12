@@ -30,7 +30,7 @@ public class TicketTypeService implements ITicketTypeService{
 		return repository.save(type);
 	}
 
-	public void deleteById(Integer id) {
+	public void delete(Integer id) {
 		repository.deleteById(id);
 	}
 

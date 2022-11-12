@@ -23,7 +23,7 @@ public class TicketService implements ITicketService{
 		return repository.findAll();
 	}
 	
-	public void deleteById(Integer id)
+	public void delete(Integer id)
 	{
 		repository.deleteById(id);
 	}
