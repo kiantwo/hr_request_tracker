@@ -10,7 +10,7 @@ import com.example.hr_request_tracker.hr_request_tracker.status.model.Status;
 import com.example.hr_request_tracker.hr_request_tracker.status.repository.IStatusRepository;
 
 @Service
-public class StatusService {
+public class StatusService implements IStatusService {
 	@Autowired
 	private IStatusRepository repository;
 	
