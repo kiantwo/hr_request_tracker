@@ -1,11 +1,14 @@
 package com.example.hr_request_tracker.hr_request_tracker.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.example.hr_request_tracker.hr_request_tracker.model.User;
 
 public interface IUserService {
-	public String findById(final int id);
-	public String findAll();
-	public int save(final User user);
-	public int update(final User user);
-	public int deleteById(final int id);
+	public Optional<User> findById(Integer id);
+	public List<User> findAll();
+	public User save(User user);
+	public User update(User user);
+	public void deleteById(Integer id);
 }

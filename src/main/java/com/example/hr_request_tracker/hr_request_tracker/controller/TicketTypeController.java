@@ -21,7 +21,7 @@ public class TicketTypeController {
 	private ITicketTypeService service;
 	
 	@RequestMapping("/ticket-type/{id}")
-	public Optional<TicketType> getByID(@PathVariable final int id) {
+	public Optional<TicketType> getByID(@PathVariable Integer id) {
 		return service.findById(id);
 	}
 	

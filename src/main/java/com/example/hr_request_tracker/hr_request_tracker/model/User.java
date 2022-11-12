@@ -1,36 +1,28 @@
 package com.example.hr_request_tracker.hr_request_tracker.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user")
 public class User {
+	@Id
+	@Column(name="user_id")
 	private int userID;
-	private int roleID;
 	private String username;
+	@Column(name="user_fname")
 	private String userFName;
+	@Column(name="user_lname")
 	private String userLName;
 	private String password;
 	private String email;
 	
-	public User() {}
-	
-	public User(final int userID, final int roleID, final String username, 
-			final String userFName, final String userLName, final String password, 
-			final String email) {
-		this.userID = userID;
-		this.roleID = roleID;
-		this.username = username;
-		this.userFName = userFName;
-		this.userLName = userLName;
-		this.password = password;
-		this.email = email;
-	}
-	
 	public int getUserID() {
 		return this.userID;
 	}
-	
-	public int getRoleID() {
-		return this.roleID;
-	}
-	
+		
 	public String getUsername() {
 		return this.username;
 	}

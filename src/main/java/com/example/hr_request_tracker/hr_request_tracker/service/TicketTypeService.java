@@ -1,40 +1,37 @@
 package com.example.hr_request_tracker.hr_request_tracker.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.hr_request_tracker.hr_request_tracker.model.TicketType;
 import com.example.hr_request_tracker.hr_request_tracker.repository.ITicketTypeRepository;
-import com.google.gson.Gson;
 
 @Service
 public class TicketTypeService implements ITicketTypeService{
-	private ITicketTypeRepository repository;
-	private Gson gson;
-	
 	@Autowired
-	public TicketTypeService (final ITicketTypeRepository repository) {
-		this.repository = repository;
-		this.gson = new Gson();			
-	}
-	public String findById(int id) {
-		return gson.toJson(repository.findById(id));
+	private ITicketTypeRepository repository;
+
+	public Optional<TicketType> findById(Integer id) {
+		return repository.findById(id);
 	}
 
-	public String findAll() {
-		return gson.toJson(repository.findAll());
+	public List<TicketType> findAll() {
+		return repository.findAll();
 	}
 
-	public int save(TicketType type) {
+	public TicketType save(TicketType type) {
 		return repository.save(type);
 	}
 
-	public int update(TicketType type) {
-		return repository.updateByID(type);
+	public TicketType update(TicketType type) {
+		return repository.save(type);
 	}
 
-	public int deleteById(int id) {
-		return repository.deleteByID(id);
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
 	}
-	
+
 }

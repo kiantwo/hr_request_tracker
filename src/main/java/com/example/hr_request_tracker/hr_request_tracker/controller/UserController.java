@@ -1,36 +1,34 @@
-//package com.example.hr_request_tracker.hr_request_tracker.controller;
-//
-//import java.io.IOException;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.DeleteMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import com.example.hr_request_tracker.hr_request_tracker.model.User;
-//import com.example.hr_request_tracker.hr_request_tracker.service.IUserService;
-//
-//@RestController
-//public class UserController {
-//	private IUserService service;
-//	
-//	@Autowired
-//	public UserController(IUserService service) {
-//		this.service = service;
-//	}
-//	
-//	@RequestMapping("/user/{id}")
-//	public String getById(@PathVariable final int id) {
-//		return service.findById(id);
-//	}
-//	
-//	@RequestMapping("/users")
-//	public String getAll() {
-//		return service.findAll();
-//	}
-//	
+package com.example.hr_request_tracker.hr_request_tracker.controller;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.hr_request_tracker.hr_request_tracker.model.User;
+import com.example.hr_request_tracker.hr_request_tracker.service.IUserService;
+
+@RestController
+public class UserController {
+	@Autowired
+	private IUserService service;
+	
+	@RequestMapping("/user/{id}")
+	public Optional<User> getById(@PathVariable Integer id) {
+		return service.findById(id);
+	}
+	
+	@RequestMapping("/users")
+	public List<User> getAll() {
+		return service.findAll();
+	}
+	
 //	@PostMapping("/users")
 //	public int save() throws IOException {		
 //		if(service.save(new User()) <= 0) {
@@ -58,4 +56,4 @@
 //			return 1;
 //		}
 //	}
-//}
+}
