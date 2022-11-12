@@ -1,37 +1,35 @@
-//package com.example.hr_request_tracker.hr_request_tracker.controller;
-//
-//import java.io.IOException;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.DeleteMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import com.example.hr_request_tracker.hr_request_tracker.model.TicketType;
-//import com.example.hr_request_tracker.hr_request_tracker.service.ITicketTypeService;
-//
-//@RestController
-//public class TicketTypeController {
-//	private ITicketTypeService service;
-//	
-//	@Autowired
-//	public TicketTypeController(final ITicketTypeService service) {
-//		this.service = service;
-//	}
-//	
-//	@RequestMapping("/ticket-type/{id}")
-//	public String getByID(@PathVariable final int id) {
-//		return service.findById(id);
-//	}
-//	
-//	@RequestMapping("/ticket-types")
-//	public String getAll() {
-//		return service.findAll();
-//	}
-//		
+package com.example.hr_request_tracker.hr_request_tracker.controller;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.hr_request_tracker.hr_request_tracker.model.TicketType;
+import com.example.hr_request_tracker.hr_request_tracker.service.ITicketTypeService;
+
+@RestController
+public class TicketTypeController {
+	@Autowired
+	private ITicketTypeService service;
+	
+	@RequestMapping("/ticket-type/{id}")
+	public Optional<TicketType> getByID(@PathVariable final int id) {
+		return service.findById(id);
+	}
+	
+	@RequestMapping("/ticket-types")
+	public List<TicketType> getAll() {
+		return service.findAll();
+	}
+		
 //	@PostMapping("/ticket-types")
 //	public int save(@RequestParam("type_id") final int id, 
 //			@RequestParam("type_name") final String typeName, 
@@ -54,7 +52,7 @@
 //			return 1;
 //		}
 //	}
-//	
+	
 //	@DeleteMapping("/ticket-types/delete/{id}")
 //	public int deleteById(@PathVariable final int id) throws IOException {
 //		if(service.deleteById(id) <= 0) {
@@ -63,4 +61,4 @@
 //			return 1;
 //		}
 //	}
-//}
+}

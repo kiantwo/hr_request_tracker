@@ -1,17 +1,19 @@
 package com.example.hr_request_tracker.hr_request_tracker.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="ticket_type")
 public class TicketType {
+	@Id
+	@Column(name="type_id")
 	private int ticketTypeID;
+	@Column(name="type_name")
 	private String typeName;
 	private String description;
-	
-	public TicketType() {}
-	
-	public TicketType(final int id, final String typeName, final String description) {
-		this.ticketTypeID = id;
-		this.typeName = typeName;
-		this.description = description;
-	}
 	
 	public int getTicketTypeID() {
 		return this.ticketTypeID;
