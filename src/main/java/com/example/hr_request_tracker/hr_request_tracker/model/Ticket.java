@@ -15,7 +15,8 @@ public class Ticket {
 	private Integer assignee;
 	@Column(name="tracker_id")
 	private Integer tracker;
-	private String status;
+	@Column(name="status_id")
+	private Integer status;
 	private String subject;
 	private String description;
 
@@ -27,7 +28,7 @@ public class Ticket {
 		return this.assignee;
 	}
 	
-	public String getStatus() {
+	public Integer getStatus() {
 		return this.status;
 	}
 	
@@ -51,7 +52,7 @@ public class Ticket {
 		this.assignee = assignee;
 	}
 	
-	public void setStatus(String status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 	
