@@ -1,6 +1,5 @@
 package com.example.hr_request_tracker.hr_request_tracker.user.controller;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.hr_request_tracker.hr_request_tracker.common.models.ApiResponse;
+import com.example.hr_request_tracker.hr_request_tracker.user.messages.UserMessages;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 import com.example.hr_request_tracker.hr_request_tracker.user.service.IUserService;
 
@@ -29,31 +30,30 @@ public class UserController {
 		return service.findAll();
 	}
 	
-//	@PostMapping("/users")
-//	public int save() throws IOException {		
-//		if(service.save(new User()) <= 0) {
-//			throw new IOException("Something went wrong in the database.");
-//		} else {
-//			return 1;
-//		}
-//	}
-//	
-//	@PostMapping("/users/update/{id}")
-//	public int update(@PathVariable final int id) throws IOException {
-//		
-//		if(service.update(new User()) <= 0) {
-//			throw new IOException("Something went wrong in the database");
-//		} else {
-//			return 1;
-//		}
-//	}
-//	
-//	@DeleteMapping("/users/delete/{id}")
-//	public int deleteById(@PathVariable final int id) throws IOException {
-//		if(service.deleteById(id) <= 0) {
-//			throw new IOException("Something went wrong in the database.");
-//		} else {	
-//			return 1;
-//		}
-//	}
+	@PostMapping("/users/create")
+	public ApiResponse save(User user) {		
+		User savedUser = service.save(user);
+		
+		if(savedUser != null) {
+			return ApiResponse.CreateSuccess(savedUser, UserMessages.USER_SUCCESSFULLY_SAVED);
+		}
+		
+		return ApiResponse.CreateError(UserMessages.GENERIC_UNSUCCESSFUL_SAVE);
+	} 
+	
+	@PostMapping("/users/update")
+	public ApiResponse update(User user) {
+		User updatedUser = service.update(user);
+		
+		if(updatedUser != null) {
+			return ApiResponse.CreateSuccess(updatedUser, UserMessages.USER_SUCCESFULLY_UPDATED);
+		}
+		
+		return ApiResponse.CreateError(UserMessages.GENERIC_UNSUCCESSFUL_UPDATE);
+	}
+	
+	@DeleteMapping("/users/delete/{id}")
+	public void deleteById(@PathVariable final int id) {
+		service.deleteById(id);
+	}
 }

@@ -35,7 +35,7 @@ public class TicketTypeController {
 		TicketType savedTicket = service.save(ticketType);
 		
 		if(savedTicket != null) {
-			return ApiResponse.CreateSuccess(savedTicket, TicketTypeMessages.TICKET_SUCCESSFULLY_SAVED);
+			return ApiResponse.CreateSuccess(savedTicket, TicketTypeMessages.TICKET_TYPE_SUCCESSFULLY_SAVED);
 		}
 		
 		return ApiResponse.CreateError(TicketTypeMessages.GENERIC_UNSUCCESSFUL_SAVE);
@@ -46,7 +46,7 @@ public class TicketTypeController {
 		TicketType updatedTicket = service.update(ticketType);
 		
 		if(updatedTicket != null) {
-			return ApiResponse.CreateSuccess(updatedTicket, TicketTypeMessages.TICKET_SUCCESFULLY_UPDATED);
+			return ApiResponse.CreateSuccess(updatedTicket, TicketTypeMessages.TICKET_TYPE_SUCCESFULLY_UPDATED);
 		}
 		
 		return ApiResponse.CreateError(TicketTypeMessages.GENERIC_UNSUCCESSFUL_SAVE);
