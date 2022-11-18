@@ -52,17 +52,29 @@ public class TicketController {
 			return ApiResponse.CreateSuccess(updatedTicket, TicketMessages.TICKET_SUCCESFULLY_UPDATED);
 		}
 		
-		return ApiResponse.CreateError(TicketMessages.GENERIC_UNSUCCESSFUL_SAVE);
+		return ApiResponse.CreateError(TicketMessages.GENERIC_UNSUCCESSFUL_UPDATE);
 	}
 	
 	@PostMapping("/tickets/update/assignee/{id}")
-	public Integer updateAssignee(@PathVariable Integer id, @RequestParam("assignee") User assignee) {
-		return service.updateAssignee(id, assignee);
+	public ApiResponse updateAssignee(@PathVariable Integer id, @RequestParam("assignee") User assignee) {
+		int result = service.updateAssignee(id, assignee);
+		
+		if(result == 1) {
+			return ApiResponse.CreateSuccess(result, TicketMessages.TICKET_SUCCESFULLY_UPDATED);
+		}
+		
+		return ApiResponse.CreateError(TicketMessages.GENERIC_UNSUCCESSFUL_UPDATE);
 	}
 	
 	@PostMapping("/tickets/update/status/{id}")
-	public Integer updateStatus(@PathVariable Integer id, @RequestParam("status") Status status) {
-		return service.updateStatus(id, status);
+	public ApiResponse updateStatus(@PathVariable Integer id, @RequestParam("status") Status status) {
+		int result = service.updateStatus(id, status);
+		
+		if(result == 1) {
+			return ApiResponse.CreateSuccess(result, TicketMessages.TICKET_SUCCESFULLY_UPDATED);
+		}
+		
+		return ApiResponse.CreateError(TicketMessages.GENERIC_UNSUCCESSFUL_UPDATE);
 	}
 	
 	@DeleteMapping("/tickets/delete/{id}")

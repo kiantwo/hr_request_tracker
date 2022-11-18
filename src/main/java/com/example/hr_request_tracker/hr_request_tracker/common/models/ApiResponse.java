@@ -40,7 +40,7 @@ public class ApiResponse {
     public static ApiResponse CreateSuccess(Object model, String message) {
         return new ApiResponse(Status.SUCCESS, model, message);
     }
-    
+        
     public static ApiResponse CreateError(String... strMessage) {
         return new ApiResponse(Status.ERROR, strMessage);
     }
