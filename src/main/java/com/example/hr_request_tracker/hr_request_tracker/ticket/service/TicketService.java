@@ -5,8 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.hr_request_tracker.hr_request_tracker.status.model.Status;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.repository.ITicketRepository;
+import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 
 @Service
 public class TicketService implements ITicketService {
@@ -38,13 +40,13 @@ public class TicketService implements ITicketService {
 		return repository.save(ticket);
 	}
 		
-//	public int updateStatus (int id, String status) {
-//		return repository.updateStatus(id, status);
-//	}
-//	
-//	public int updateAssignee (int id, String assignee) {
-//		return repository.updateAssignee(id, assignee);
-//	}
+	public Integer updateStatus(Integer id, Status status) {
+		return repository.updateStatus(id, status);
+	}
+	
+	public Integer updateAssignee(Integer id, User assignee) {
+		return repository.updateAssignee(id, assignee);
+	}
 	
 	
 }
