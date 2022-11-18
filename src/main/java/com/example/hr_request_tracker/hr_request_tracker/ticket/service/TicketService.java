@@ -2,6 +2,8 @@ package com.example.hr_request_tracker.hr_request_tracker.ticket.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,11 +41,13 @@ public class TicketService implements ITicketService {
 	{
 		return repository.save(ticket);
 	}
-		
+	
+	@Transactional
 	public Integer updateStatus(Integer id, Status status) {
 		return repository.updateStatus(id, status);
 	}
 	
+	@Transactional
 	public Integer updateAssignee(Integer id, User assignee) {
 		return repository.updateAssignee(id, assignee);
 	}
