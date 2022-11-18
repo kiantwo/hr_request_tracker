@@ -5,6 +5,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -20,6 +22,7 @@ import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.Ticke
 public class User {
 	@Id
 	@Column(name="user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userID;
 	private String username;
 	@Column(name="user_fname")

@@ -2,6 +2,8 @@ package com.example.hr_request_tracker.hr_request_tracker.ticket.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,6 +18,7 @@ import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 public class Ticket {
 	@Id
 	@Column(name="ticket_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ticketID;
 	
 	@ManyToOne
