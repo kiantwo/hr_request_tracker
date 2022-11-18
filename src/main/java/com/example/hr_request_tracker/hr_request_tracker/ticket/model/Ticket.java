@@ -2,21 +2,37 @@ package com.example.hr_request_tracker.hr_request_tracker.ticket.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.example.hr_request_tracker.hr_request_tracker.status.model.Status;
+import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.TicketType;
+import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 
 @Entity
 @Table(name="ticket")
 public class Ticket {
 	@Id
 	@Column(name="ticket_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ticketID;
-	@Column(name="assignee_id")
-	private Integer assignee;
-	@Column(name="tracker_id")
-	private Integer tracker;
-	@Column(name="status_id")
-	private Integer status;
+	
+	@ManyToOne
+	@JoinColumn(name="assignee_id")
+	private User assignee;
+	
+	@ManyToOne
+	@JoinColumn(name="tracker_id")
+	private TicketType tracker;
+	
+	@ManyToOne
+	@JoinColumn(name="status_id")
+	private Status status;
+	
 	private String subject;
 	private String description;
 
@@ -24,11 +40,11 @@ public class Ticket {
 		return this.ticketID;
 	}
 	
-	public Integer getAssignee() {
+	public User getAssignee() {
 		return this.assignee;
 	}
 	
-	public Integer getStatus() {
+	public Status getStatus() {
 		return this.status;
 	}
 	
@@ -40,7 +56,7 @@ public class Ticket {
 		return this.description;
 	}
 	
-	public Integer getTracker() {
+	public TicketType getTracker() {
 		return this.tracker;
 	}
 	
@@ -48,11 +64,11 @@ public class Ticket {
 		this.ticketID = id;
 	}
 	
-	public void setAssignee(Integer assignee) {
+	public void setAssignee(User assignee) {
 		this.assignee = assignee;
 	}
 	
-	public void setStatus(Integer status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	
@@ -64,7 +80,7 @@ public class Ticket {
 		this.description = description;
 	}
 	
-	public void setTracker(Integer tracker) {
+	public void setTracker(TicketType tracker) {
 		this.tracker = tracker;
 	}
 }
