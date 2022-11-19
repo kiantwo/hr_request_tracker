@@ -14,5 +14,5 @@ public interface ITicketService {
 	public Ticket update(Ticket ticket);
 	public Integer updateAssignee(Integer id, User assignee);
 	public Integer updateStatus(Integer id, Status status);
-	public void delete(Integer id);
+	public Integer delete(Integer id) throws Exception;
 }

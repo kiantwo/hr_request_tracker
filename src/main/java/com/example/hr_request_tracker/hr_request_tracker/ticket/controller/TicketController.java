@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,7 +80,13 @@ public class TicketController {
 	}
 	
 	@DeleteMapping("/tickets/delete/{id}")
-	public void delete(@PathVariable Integer id) {
-		service.delete(id);
+	public ApiResponse delete(@PathVariable Integer id) throws Exception {
+		int result = service.delete(id);
+		
+		if(result == 1) {
+			return ApiResponse.CreateSuccess(result, TicketMessages.TICKET_SUCCESSFULLY_DELETED);
+		}
+		
+		return ApiResponse.CreateError(TicketMessages.GENERIC_UNSUCCESSFUL_DELETE);
 	}
 }
