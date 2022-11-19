@@ -53,7 +53,13 @@ public class StatusController {
 	}
 	
 	@DeleteMapping("/status/delete/{id}")
-	public void delete(@PathVariable int id) {
-		service.deleteById(id);
+	public ApiResponse delete(@PathVariable int id) throws Exception {
+		int result = service.deleteById(id);
+		
+		if(result == 1) {
+			return ApiResponse.CreateSuccess(result, StatusMessages.STATUS_SUCCESSFULLY_DELETED);
+		}
+		
+		return ApiResponse.CreateError(StatusMessages.GENERIC_UNSUCCESSFUL_DELETE);
 	}
 }

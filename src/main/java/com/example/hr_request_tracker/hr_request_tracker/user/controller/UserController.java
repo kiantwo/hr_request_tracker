@@ -53,7 +53,13 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/users/delete/{id}")
-	public void deleteById(@PathVariable final int id) {
-		service.deleteById(id);
+	public ApiResponse deleteById(@PathVariable final int id) throws Exception {
+		int result = service.deleteById(id);
+		
+		if(result == 1) {
+			return ApiResponse.CreateSuccess(result, UserMessages.USER_SUCCESSFULLY_DELETED);
+		}
+		
+		return ApiResponse.CreateError(UserMessages.GENERIC_UNSUCCESSFUL_DELETE);
 	}
 }

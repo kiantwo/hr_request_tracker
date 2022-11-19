@@ -10,5 +10,5 @@ public interface ITicketTypeService {
 	public List<TicketType> findAll();
 	public TicketType save(TicketType ticketType);
 	public TicketType update(TicketType ticketType);
-	public void delete(Integer id);
+	public Integer delete(Integer id) throws Exception;
 }

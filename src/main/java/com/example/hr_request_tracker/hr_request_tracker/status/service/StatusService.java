@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.hr_request_tracker.hr_request_tracker.status.model.Status;
@@ -30,8 +31,13 @@ public class StatusService implements IStatusService {
 		return repository.save(status);
 	}
 	
-	public void deleteById(int status) {
-		repository.deleteById(status);
+	public Integer deleteById(int id) throws Exception {
+		try {
+			repository.deleteById(id);
+			return 1;
+		} catch(EmptyResultDataAccessException e) {
+			return 0;
+		}
 	}
 	
 }
