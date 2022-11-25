@@ -14,4 +14,10 @@ import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 public interface IUserRepository extends JpaRepository<User, Integer> {
 	@Query("select t from Ticket t where t.assignee = :user")
 	public List<Ticket> findUserTickets(@Param("user") User user);
+	
+	@Query("select t from Ticket t where t.assignee = :user and t.createdAt < CURDATE()")
+	public List<Ticket> findUserAgingTickets(@Param("user") User user);
+	
+	@Query("select t from Ticket t where t.createdAt < CURDATE()")
+	public List<Ticket> findAllAgingTickets();
 }

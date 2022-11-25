@@ -28,6 +28,14 @@ public class UserService implements IUserService{
 		return repository.findUserTickets(user);
 	}
 	
+	public List<Ticket> findUserAgingTickets(User user) {
+		return repository.findUserAgingTickets(user);
+	}
+	
+	public List<Ticket> findAllAgingTickets() {
+		return repository.findAllAgingTickets();
+	}
+	
 	public User save(User user) {
 		return repository.save(user);
 	}

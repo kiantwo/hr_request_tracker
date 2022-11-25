@@ -10,6 +10,8 @@ public interface IUserService {
 	public Optional<User> findById(Integer id);
 	public List<User> findAll();
 	public List<Ticket> findUserTickets(User user);
+	public List<Ticket> findUserAgingTickets(User user);
+	public List<Ticket> findAllAgingTickets();
 	public User save(User user);
 	public User update(User user);
 	public Integer deleteById(Integer id) throws Exception;

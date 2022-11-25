@@ -36,6 +36,16 @@ public class UserController {
 		return service.findUserTickets(user);
 	}
 	
+	@RequestMapping("/user/aging-tickets/{user}")
+	public List<Ticket> getUserAgingTickets(@PathVariable User user) {
+		return service.findUserAgingTickets(user);
+	}
+	
+	@RequestMapping("/admin/aging-tickets")
+	public List<Ticket> getAllAgingTickets() {
+		return service.findAllAgingTickets();
+	}
+	
 	@PostMapping("/users/create")
 	public ApiResponse save(User user) {		
 		User savedUser = service.save(user);
