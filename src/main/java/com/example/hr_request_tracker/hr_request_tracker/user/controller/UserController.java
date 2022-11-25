@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hr_request_tracker.hr_request_tracker.common.models.ApiResponse;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.user.messages.UserMessages;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 import com.example.hr_request_tracker.hr_request_tracker.user.service.IUserService;
@@ -28,6 +29,11 @@ public class UserController {
 	@RequestMapping("/users")
 	public List<User> getAll() {
 		return service.findAll();
+	}
+	
+	@RequestMapping("/user/tickets/{user}")
+	public List<Ticket> getUserTickets(@PathVariable User user) {
+		return service.findUserTickets(user);
 	}
 	
 	@PostMapping("/users/create")

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 import com.example.hr_request_tracker.hr_request_tracker.user.repository.IUserRepository;
 
@@ -21,6 +22,10 @@ public class UserService implements IUserService{
 
 	public List<User> findAll() {
 		return repository.findAll();
+	}
+	
+	public List<Ticket> findUserTickets(User user) {
+		return repository.findUserTickets(user);
 	}
 	
 	public User save(User user) {
