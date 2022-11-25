@@ -42,9 +42,9 @@ INSERT INTO status(status_id, status_name, description) values (400, "Active", "
 INSERT INTO status(status_id, status_name, description) values (401, "Inactive", "");
 INSERT INTO status(status_id, status_name, description) values (402, "Canceled", "");
 
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description) values (300, 100, 200, "Request for salary increase", 400, "");
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description) values (301, 101, 201, "Request for leave", 402, "Would like to take a vacation");
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description) values (302, 102, 203, "Conflict with colleague", 401, "Keeps stealing my lunch");
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description) values (303, 103, 203, "Request for transfer of management", 402,  "Would like to manage different area");
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description) values (304, 100, 205,"Request for team building", 400, "New training and seminars");
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (300, 100, 200, "Request for salary increase", 400, "", "2022-10-01");
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (301, 101, 201, "Request for leave", 402, "Would like to take a vacation", "2022-10-03");
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (302, 102, 203, "Conflict with colleague", 401, "Keeps stealing my lunch", "2022-10-04");
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (303, 103, 203, "Request for transfer of management", 402,  "Would like to manage different area", "2022-11-22");
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (304, 100, 205,"Request for team building", 400, "New training and seminars", "2022-11-25");
 

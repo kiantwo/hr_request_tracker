@@ -28,6 +28,10 @@ public class TicketService implements ITicketService {
 		return repository.findAll();
 	}
 	
+	public List<Ticket> findByAging() {
+		return repository.findByAging();
+	}
+	
 	public Integer delete(Integer id) throws Exception
 	{
 		try {

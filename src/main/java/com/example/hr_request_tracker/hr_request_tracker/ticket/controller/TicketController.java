@@ -35,6 +35,11 @@ public class TicketController {
 		return service.findAll();
 	}
 	
+	@RequestMapping("/tickets/aging")
+	public List<Ticket> getByAging() {
+		return service.findByAging();
+	}
+	
 	@PostMapping("/tickets/create")
 	public ApiResponse save(Ticket ticket)  {
 		Ticket savedTicket = service.save(ticket);

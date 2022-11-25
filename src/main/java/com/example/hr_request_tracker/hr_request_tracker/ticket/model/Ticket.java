@@ -1,5 +1,7 @@
 package com.example.hr_request_tracker.hr_request_tracker.ticket.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,6 +37,9 @@ public class Ticket {
 	
 	private String subject;
 	private String description;
+	
+	@Column(name="created_at")
+	private LocalDate createdAt;
 
 	public int getTicketID() {
 		return this.ticketID;
@@ -60,6 +65,10 @@ public class Ticket {
 		return this.tracker;
 	}
 	
+	public LocalDate getCreatedAt() {
+		return this.createdAt;
+	}
+	
 	public void setTicketID(int id) {
 		this.ticketID = id;
 	}
@@ -82,5 +91,9 @@ public class Ticket {
 	
 	public void setTracker(TicketType tracker) {
 		this.tracker = tracker;
+	}
+	
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = LocalDate.parse(createdAt);
 	}
 }
