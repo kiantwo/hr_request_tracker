@@ -16,6 +16,7 @@ import com.example.hr_request_tracker.hr_request_tracker.status.model.Status;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.messages.TicketMessages;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.service.ITicketService;
+import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.TicketType;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 
 
@@ -38,6 +39,11 @@ public class TicketController {
 	@RequestMapping("/tickets/aging")
 	public List<Ticket> getByAging() {
 		return service.findByAging();
+	}
+	
+	@RequestMapping("/tickets/aging/{category}")
+	public List<Ticket> getByAgingCategory(@PathVariable TicketType category) {
+		return service.findByAgingCategory(category);
 	}
 	
 	@PostMapping("/tickets/create")
