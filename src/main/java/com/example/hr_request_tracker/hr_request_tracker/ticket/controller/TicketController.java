@@ -40,10 +40,20 @@ public class TicketController {
 	public List<Ticket> getByAging() {
 		return service.findByAging();
 	}
-	
+		
 	@RequestMapping("/tickets/aging/{category}")
 	public List<Ticket> getByAgingCategory(@PathVariable TicketType category) {
 		return service.findByAgingCategory(category);
+	}
+	
+	@RequestMapping("/tickets/count-category/{category}")
+	public Integer getByCountCategory(@PathVariable TicketType category) {
+		return service.findByCountCategory(category);
+	}
+	
+	@RequestMapping("/tickets/count-user/{user}")
+	public Integer getByCountUser(@PathVariable User user) {
+		return service.findByCountUser(user);
 	}
 	
 	@PostMapping("/tickets/create")

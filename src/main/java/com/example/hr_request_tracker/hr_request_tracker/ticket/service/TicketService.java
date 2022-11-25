@@ -37,6 +37,14 @@ public class TicketService implements ITicketService {
 		return repository.findByAgingCategory(category);
 	}
 	
+	public Integer findByCountCategory(TicketType category) {
+		return repository.findByCountCategory(category);
+	}
+	
+	public Integer findByCountUser(User user) {
+		return repository.findByCountUser(user);
+	}
+	
 	public Integer delete(Integer id) throws Exception
 	{
 		try {

@@ -28,4 +28,10 @@ public interface ITicketRepository extends JpaRepository<Ticket, Integer> {
 	
 	@Query("select t from Ticket t where t.tracker = :category and t.createdAt < CURDATE()")
 	public List<Ticket> findByAgingCategory(@Param("category") TicketType category);
+	
+	@Query("select count(t) from Ticket t where t.tracker = :category")
+	public Integer findByCountCategory(@Param("category") TicketType category);
+	
+	@Query("select count(t) from Ticket t where t.assignee = :assignee")
+	public Integer findByCountUser(@Param("assignee") User assignee);
 }

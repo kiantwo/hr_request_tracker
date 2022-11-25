@@ -13,6 +13,8 @@ public interface ITicketService {
 	public List<Ticket> findAll();
 	public List<Ticket> findByAging();
 	public List<Ticket> findByAgingCategory(TicketType category);
+	public Integer findByCountCategory(TicketType category);
+	public Integer findByCountUser(User user);
 	public Ticket save(Ticket ticket);
 	public Ticket update(Ticket ticket);
 	public Integer updateAssignee(Integer id, User assignee);
