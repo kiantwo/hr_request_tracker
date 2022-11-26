@@ -19,6 +19,10 @@ public class UserService implements IUserService{
 	public Optional<User> findById(Integer id) {
 		return repository.findById(id);
 	}
+	
+	public User login(String username, String password) {
+		return repository.login(username, password);
+	}
 
 	public List<User> findAll() {
 		return repository.findAll();

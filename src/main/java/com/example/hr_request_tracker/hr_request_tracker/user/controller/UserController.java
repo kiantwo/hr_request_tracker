@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hr_request_tracker.hr_request_tracker.common.models.ApiResponse;
@@ -44,6 +45,18 @@ public class UserController {
 	@RequestMapping("/admin/aging-tickets")
 	public List<Ticket> getAllAgingTickets() {
 		return service.findAllAgingTickets();
+	}
+	
+	@PostMapping("/login")
+	public ApiResponse login(@RequestParam("username") String username, 
+			@RequestParam("password") String password) {
+		User loggedUser = service.login(username, password);
+		
+		if(loggedUser != null) {
+			return ApiResponse.CreateSuccess(loggedUser, UserMessages.USER_SUCCESSFULLY_LOGGED);
+		}
+		
+		return ApiResponse.CreateError(UserMessages.USER_UNSUCCESSFUL_LOGGED);
 	}
 	
 	@PostMapping("/users/create")

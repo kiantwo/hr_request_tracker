@@ -8,6 +8,7 @@ import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 
 public interface IUserService {
 	public Optional<User> findById(Integer id);
+	public User login(String username, String password);
 	public List<User> findAll();
 	public List<Ticket> findUserTickets(User user);
 	public List<Ticket> findUserAgingTickets(User user);

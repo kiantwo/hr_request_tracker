@@ -20,4 +20,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
 	
 	@Query("select t from Ticket t where t.createdAt < CURDATE()")
 	public List<Ticket> findAllAgingTickets();
+	
+	@Query("select u from User u where u.username = :username and u.password = :password")
+	public User login(@Param("username") String username, @Param("password") String password);
 }
