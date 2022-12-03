@@ -55,11 +55,15 @@ public class TicketType {
 		this.ticketTypeID = ticketTypeID;
 	}
 	
-	public void setTicketTypeName(String typeName) {
+	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
 	
-	public void setTicketTypeDescription(String description) {
+	public void setDescription(String description) {
 		this.description = description;
-	}	
+	}
+	
+	public void setDefaultAssignee(Set<User> defaultAssignee) {
+		this.defaultAssignee = defaultAssignee;
+	}
 }

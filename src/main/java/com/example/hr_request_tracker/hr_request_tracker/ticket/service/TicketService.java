@@ -14,7 +14,6 @@ import com.example.hr_request_tracker.hr_request_tracker.ticket.model.ITicketCou
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IUserCount;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.repository.ITicketRepository;
-import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.TicketType;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 
 @Service
