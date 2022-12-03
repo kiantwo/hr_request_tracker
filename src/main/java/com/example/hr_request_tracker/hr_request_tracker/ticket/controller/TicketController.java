@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.hr_request_tracker.hr_request_tracker.common.models.ApiResponse;
 import com.example.hr_request_tracker.hr_request_tracker.status.model.Status;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.messages.TicketMessages;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IAgingTicket;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.ITicketCount;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IUserCount;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.service.ITicketService;
-import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.TicketType;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 
 
@@ -41,19 +43,19 @@ public class TicketController {
 		return service.findByAging();
 	}
 		
-	@RequestMapping("/tickets/aging/{category}")
-	public List<Ticket> getByAgingCategory(@PathVariable TicketType category) {
-		return service.findByAgingCategory(category);
+	@RequestMapping("/tickets/category/aging")
+	public List<IAgingTicket> getByAgingCategory() {
+		return service.findByAgingCategory();
 	}
 	
-	@RequestMapping("/tickets/count-category/{category}")
-	public Integer getByCountCategory(@PathVariable TicketType category) {
-		return service.findByCountCategory(category);
+	@RequestMapping("/tickets/category/count")
+	public List<ITicketCount> getByCountCategory() {
+		return service.findByCountCategory();
 	}
 	
-	@RequestMapping("/tickets/count-user/{user}")
-	public Integer getByCountUser(@PathVariable User user) {
-		return service.findByCountUser(user);
+	@RequestMapping("/tickets/user/count")
+	public List<IUserCount> getByCountUser() {
+		return service.findByCountUser();
 	}
 	
 	@PostMapping("/tickets/create")

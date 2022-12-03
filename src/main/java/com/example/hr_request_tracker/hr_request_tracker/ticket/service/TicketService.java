@@ -9,6 +9,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.hr_request_tracker.hr_request_tracker.status.model.Status;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IAgingTicket;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.ITicketCount;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IUserCount;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.repository.ITicketRepository;
 import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.TicketType;
@@ -33,16 +36,16 @@ public class TicketService implements ITicketService {
 		return repository.findByAging();
 	}
 	
-	public List<Ticket> findByAgingCategory(TicketType category) {
-		return repository.findByAgingCategory(category);
+	public List<IAgingTicket> findByAgingCategory() {
+		return repository.findByAgingCategory();
 	}
 	
-	public Integer findByCountCategory(TicketType category) {
-		return repository.findByCountCategory(category);
+	public List<ITicketCount> findByCountCategory() {
+		return repository.findByCountCategory();
 	}
 	
-	public Integer findByCountUser(User user) {
-		return repository.findByCountUser(user);
+	public List<IUserCount> findByCountUser() {
+		return repository.findByCountUser();
 	}
 	
 	public Integer delete(Integer id) throws Exception

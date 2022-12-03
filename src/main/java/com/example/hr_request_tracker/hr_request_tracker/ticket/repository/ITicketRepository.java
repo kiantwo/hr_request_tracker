@@ -9,8 +9,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.hr_request_tracker.hr_request_tracker.status.model.Status;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IAgingTicket;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.ITicketCount;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IUserCount;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
-import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.TicketType;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 
 @Repository
@@ -26,12 +28,12 @@ public interface ITicketRepository extends JpaRepository<Ticket, Integer> {
 	@Query("select t from Ticket t where t.createdAt < CURDATE()")
 	public List<Ticket> findByAging();
 	
-	@Query("select t from Ticket t where t.tracker = :category and t.createdAt < CURDATE()")
-	public List<Ticket> findByAgingCategory(@Param("category") TicketType category);
+	@Query("select t.ticketID as ticketID, t.tracker as tracker, t.createdAt as createdAt " + "from Ticket as t group by t.ticketID, t.tracker having t.createdAt < CURDATE()")
+	public List<IAgingTicket> findByAgingCategory();
 	
-	@Query("select count(t) from Ticket t where t.tracker = :category")
-	public Integer findByCountCategory(@Param("category") TicketType category);
+	@Query("select t.tracker as tracker, count(t.tracker) as trackerCount " + "from Ticket as t group by t.tracker")
+	public List<ITicketCount> findByCountCategory();
 	
-	@Query("select count(t) from Ticket t where t.assignee = :assignee")
-	public Integer findByCountUser(@Param("assignee") User assignee);
+	@Query("select t.assignee as user, count(t.assignee) as userCount " + "from Ticket as t group by t.assignee")
+	public List<IUserCount> findByCountUser();
 }
