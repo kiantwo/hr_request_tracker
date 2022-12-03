@@ -37,6 +37,7 @@ public class Ticket {
 	
 	private String subject;
 	private String description;
+	private String file;
 	
 	@Column(name="created_at")
 	private LocalDate createdAt;
@@ -59,6 +60,10 @@ public class Ticket {
 	
 	public String getDescription() {
 		return this.description;
+	}
+	
+	public String getFile() {
+		return this.file;
 	}
 	
 	public TicketType getTracker() {
@@ -95,5 +100,9 @@ public class Ticket {
 	
 	public void setCreatedAt(String createdAt) {
 		this.createdAt = LocalDate.parse(createdAt);
+	}
+	
+	public void setFile(String file) {
+		this.file = file;
 	}
 }

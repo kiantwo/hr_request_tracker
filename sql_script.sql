@@ -57,6 +57,7 @@ CREATE TABLE `hr_request`.`ticket` (
   `status_id` INT NOT NULL,
   `subject` VARCHAR(45) NOT NULL,
   `description` VARCHAR(255) NULL,
+  `file` VARCHAR(150) NULL,
   `created_at` VARCHAR(45) NULL,
   `expires_at` TIMESTAMP NULL,
     
