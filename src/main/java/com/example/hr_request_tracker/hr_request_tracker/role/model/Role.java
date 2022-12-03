@@ -20,8 +20,10 @@ public class Role {
 	@Column(name="role_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int roleID;
+	
 	@Column(name="role_name")
 	private String roleName;
+	
 	@Column(name="role_abbv")
 	private String roleAbbv;
 	
@@ -36,7 +38,7 @@ public class Role {
 		return this.roleName;
 	}
 	
-	public String roleAbbv() {
+	public String getRoleAbbv() {
 		return this.roleAbbv;
 	}
 	
