@@ -1,14 +1,24 @@
+DROP TABLE IF EXISTS `hr_request`.`role`;
+
+CREATE TABLE `hr_request`.`role`(
+	`role_id` INT NOT NULL AUTO_INCREMENT,
+    `role_name` VARCHAR(45) NOT NULL,
+    `role_abbv` VARCHAR(15) NOT NULL,
+PRIMARY KEY(`role_id`));
+
 DROP TABLE IF EXISTS `hr_request`.`user`;
 
 CREATE TABLE `hr_request`.`user`(
  `user_id` INT NOT NULL AUTO_INCREMENT,
+ `role_id` INT NOT NULL,
  `username` VARCHAR(45) NOT NULL,
  `user_fname` VARCHAR(45) NOT NULL,
  `user_lname` VARCHAR(45) NOT NULL,
  `password` VARCHAR(45) NOT NULL,
  `email` VARCHAR(45) NOT NULL,
  
- PRIMARY KEY (`user_id`));
+ PRIMARY KEY (`user_id`),
+ FOREIGN KEY (`role_id`) REFERENCES role(`role_id`));
  
  DROP TABLE IF EXISTS `hr_request`.`ticket_type`;
  

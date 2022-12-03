@@ -6,11 +6,15 @@ INSERT into ticket_module(ticketid, asignee,status,subject,description,tracker) 
 
 USE hr_request;
 
-INSERT into user(user_id, username, user_fname, user_lname, password, email) values (100, "saturnina", "Saturnina", "Alvarez", "123456", "saturnina@alliance.com");
-INSERT into user(user_id, username, user_fname, user_lname, password, email) values (101, "rejine", "Rejine", "Alquisa", "123456", "alquisa@alliance.com");
-INSERT into user(user_id, username, user_fname, user_lname, password, email) values (102, "pelisa", "Pelisa Jane", "Ligalig", "123456", "pjligalig@alliance.com");
-INSERT into user(user_id, username, user_fname, user_lname, password, email) values (103, "giselle", "Ma. Giselle", "Mabunga", "123456", "giselle@alliance.com");
-INSERT into user(user_id, username, user_fname, user_lname, password, email) values (104, "jasmine", "Jasmine", "Patalinghug", "123456", "jasminep@alliance.com");
+INSERT into role(role_id, role_name, role_abbv) values(500, "Developer", "DEV");
+INSERT into role(role_id, role_name, role_abbv) values(501, "Project Manager", "PM");
+INSERT into role(role_id, role_name, role_abbv) values(502, "Humans Relation", "HR");
+
+INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (100, 502, "saturnina", "Saturnina", "Alvarez", "123456", "saturnina@alliance.com");
+INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (101, 502, "rejine", "Rejine", "Alquisa", "123456", "alquisa@alliance.com");
+INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (102, 502, "pelisa", "Pelisa Jane", "Ligalig", "123456", "pjligalig@alliance.com");
+INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (103, 502, "giselle", "Ma. Giselle", "Mabunga", "123456", "giselle@alliance.com");
+INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (104, 502, "jasmine", "Jasmine", "Patalinghug", "123456", "jasminep@alliance.com");
 
 INSERT INTO ticket_type(type_id, type_name, description) values(200, "Benefits", "");
 INSERT INTO ticket_type(type_id, type_name, description) values(201, "Payroll", "");

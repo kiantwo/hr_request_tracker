@@ -10,10 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
+import com.example.hr_request_tracker.hr_request_tracker.role.model.Role;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.TicketType;
 
@@ -34,6 +36,10 @@ public class User {
 	
 	@OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL)
 	private Set<Ticket> tickets;
+	
+	@ManyToOne
+	@JoinColumn(name="role_id")
+	private Role role;
 	
 	@ManyToMany
     @JoinTable(
@@ -66,6 +72,10 @@ public class User {
 	public String getUserEmail() {
 		return this.email;
 	}
+	
+	public Role getUserRole() {
+		return this.role;
+	}
 			
  	public void setUserID(final int id) {
 		this.userID = id;
@@ -89,5 +99,9 @@ public class User {
 	
 	public void setUserEmail(final String email) {
 		this.email = email;
+	}
+	
+	public void setUserRole(final Role role) {
+		this.role = role;
 	}
 }
