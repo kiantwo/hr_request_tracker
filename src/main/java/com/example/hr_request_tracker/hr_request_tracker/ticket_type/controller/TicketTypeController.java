@@ -57,7 +57,7 @@ public class TicketTypeController {
 		int result = service.delete(id);
 		
 		if(result == 1) {
-			return ApiResponse.CreateSuccess(service, TicketTypeMessages.TICKET_TYPE_SUCCESSFULLY_DELETED);
+			return ApiResponse.CreateSuccess(result, TicketTypeMessages.TICKET_TYPE_SUCCESSFULLY_DELETED);
 		}
 		
 		return ApiResponse.CreateError(TicketTypeMessages.GENERIC_UNSUCCESSFUL_DELETE);
