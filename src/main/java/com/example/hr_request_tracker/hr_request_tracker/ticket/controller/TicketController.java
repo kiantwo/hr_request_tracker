@@ -18,9 +18,6 @@ import com.example.hr_request_tracker.hr_request_tracker.common.models.ApiRespon
 import com.example.hr_request_tracker.hr_request_tracker.csv.service.CsvExportService;
 import com.example.hr_request_tracker.hr_request_tracker.status.model.Status;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.messages.TicketMessages;
-import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IAgingTicket;
-import com.example.hr_request_tracker.hr_request_tracker.ticket.model.ITicketCount;
-import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IUserCount;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.service.ITicketService;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
@@ -47,27 +44,6 @@ public class TicketController {
 	@RequestMapping("/tickets/aging")
 	public List<Ticket> getByAging() {
 		return service.findByAging();
-	}
-		
-	@RequestMapping("/tickets/category/aging")
-	public List<IAgingTicket> getByAgingCategory(HttpServletResponse response) throws IOException {
-		response.setContentType("text/csv");
-		response.addHeader("Content-Disposition", "attachment; filename=\"aging_tickets_per_category.csv\"");
-		csvExportService.writeAgingCategoryToCsv(response.getWriter());
-		return service.findByAgingCategory();
-	}
-	
-	@RequestMapping("/tickets/category/count")
-	public List<ITicketCount> getByCountCategory(HttpServletResponse response) throws IOException {
-		response.setContentType("text/csv");
-		response.addHeader("Content-Disposition", "attachment; filename=\"ticket_count_category.csv\"");
-		csvExportService.writeCountCategoryToCsv(response.getWriter());
-		return service.findByCountCategory();
-	}
-	
-	@RequestMapping("/tickets/user/count")
-	public List<IUserCount> getByCountUser() {
-		return service.findByCountUser();
 	}
 	
 	@PostMapping("/tickets/create")
@@ -123,5 +99,33 @@ public class TicketController {
 		}
 		
 		return ApiResponse.CreateError(TicketMessages.GENERIC_UNSUCCESSFUL_DELETE);
+	}
+	
+	@RequestMapping("/tickets/all")
+	public void exportAllTickets(HttpServletResponse response) throws IOException {
+		response.setContentType("text/csv");
+		response.addHeader("Content-Disposition", "attachment; filename=\"all_tickets.csv\"");
+		csvExportService.writeAllTicketsToCsv(response.getWriter());
+	}
+		
+	@RequestMapping("/tickets/category/aging")
+	public void exportByAgingCategory(HttpServletResponse response) throws IOException {
+		response.setContentType("text/csv");
+		response.addHeader("Content-Disposition", "attachment; filename=\"aging_tickets_per_category.csv\"");
+		csvExportService.writeAgingCategoryToCsv(response.getWriter());
+	}
+	
+	@RequestMapping("/tickets/category/count")
+	public void exportByCountCategory(HttpServletResponse response) throws IOException {
+		response.setContentType("text/csv");
+		response.addHeader("Content-Disposition", "attachment; filename=\"ticket_count_category.csv\"");
+		csvExportService.writeCountCategoryToCsv(response.getWriter());
+	}
+	
+	@RequestMapping("/tickets/user/count")
+	public void exportByCountUser(HttpServletResponse response) throws IOException {
+		response.setContentType("text/csv");
+		response.addHeader("Content-Disposition", "attachment; filename=\"user_count_category.csv\"");
+		csvExportService.writeCountUserToCsv(response.getWriter());
 	}
 }
