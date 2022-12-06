@@ -20,6 +20,17 @@ CREATE TABLE `hr_request`.`user`(
  PRIMARY KEY (`user_id`),
  FOREIGN KEY (`role_id`) REFERENCES role(`role_id`));
  
+ DROP TABLE IF EXISTS `hr_request`.`token`;
+ 
+ CREATE TABLE `hr_request`.`token`(
+	`token_id` INT NOT NULL AUTO_INCREMENT,
+    `user_id` INT NOT NULL,
+    `auth_token` VARCHAR(100),
+    `expires_at` VARCHAR(45) NULL,
+	
+    PRIMARY KEY(`token_id`),
+    FOREIGN KEY(`user_id`) REFERENCES user(`user_id`));
+ 
  DROP TABLE IF EXISTS `hr_request`.`ticket_type`;
  
 CREATE TABLE `hr_request`.`ticket_type`(
@@ -54,7 +65,7 @@ CREATE TABLE `hr_request`.`file` (
 	`file_id` INT NOT NULL AUTO_INCREMENT,
     `file_name` VARCHAR(100),
     `file_type` VARCHAR(25),
-    `file_data` BLOB,
+    `file_data` MEDIUMBLOB,
 	PRIMARY KEY(`file_id`));
 
 DROP TABLE IF EXISTS `hr_request`.`ticket`;

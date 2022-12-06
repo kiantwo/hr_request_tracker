@@ -27,7 +27,7 @@ public class File {
 	private String fileType;
 	
 	@Lob
-	@Column(name="file_data")
+	@Column(name="file_data", length=100000)
 	private byte[] fileData;
 	
 	@OneToMany(mappedBy="file", cascade = CascadeType.ALL)

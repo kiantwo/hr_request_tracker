@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.example.hr_request_tracker.hr_request_tracker.authentication.model.Token;
 import com.example.hr_request_tracker.hr_request_tracker.role.model.Role;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.TicketType;
@@ -35,6 +36,9 @@ public class User {
 	
 	@OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL)
 	private Set<Ticket> tickets;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Token> tokens;
 	
 	@ManyToOne
 	@JoinColumn(name="role_id")
