@@ -47,6 +47,15 @@ CREATE TABLE `hr_request`.`status` (
     `description` VARCHAR(255) NOT NULL,
 	
     PRIMARY KEY(`status_id`));
+    
+DROP TABLE IF EXISTS `hr_request`.`file`;
+
+CREATE TABLE `hr_request`.`file` (
+	`file_id` INT NOT NULL AUTO_INCREMENT,
+    `file_name` VARCHAR(100),
+    `file_type` VARCHAR(25),
+    `file_data` BLOB,
+	PRIMARY KEY(`file_id`));
 
 DROP TABLE IF EXISTS `hr_request`.`ticket`;
 
@@ -55,14 +64,15 @@ CREATE TABLE `hr_request`.`ticket` (
   `assignee_id` INT NOT NULL,
   `tracker_id` INT NOT NULL,
   `status_id` INT NOT NULL,
+  `file_id` INT NULL,
   `subject` VARCHAR(45) NOT NULL,
   `description` VARCHAR(255) NULL,
-  `file` VARCHAR(150) NULL,
   `created_at` VARCHAR(45) NULL,
   `expires_at` TIMESTAMP NULL,
     
   PRIMARY KEY (`ticket_id`),
   FOREIGN KEY (`assignee_id`) REFERENCES user(`user_id`),
   FOREIGN KEY (`tracker_id`) REFERENCES ticket_type(`type_id`),
-  FOREIGN KEY (`status_id`) REFERENCES status(`status_id`));
+  FOREIGN KEY (`status_id`) REFERENCES status(`status_id`),
+  FOREIGN KEY (`file_id`) REFERENCES file(`file_id`));
   

@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.example.hr_request_tracker.hr_request_tracker.file.model.File;
 import com.example.hr_request_tracker.hr_request_tracker.status.model.Status;
 import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.TicketType;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
@@ -35,9 +36,12 @@ public class Ticket {
 	@JoinColumn(name="status_id")
 	private Status status;
 	
+	@ManyToOne
+	@JoinColumn(name="file_id")
+	private File file;
+	
 	private String subject;
 	private String description;
-	private String file;
 	
 	@Column(name="created_at")
 	private LocalDate createdAt;
@@ -62,7 +66,7 @@ public class Ticket {
 		return this.description;
 	}
 	
-	public String getFile() {
+	public File getFile() {
 		return this.file;
 	}
 	
@@ -102,7 +106,7 @@ public class Ticket {
 		this.createdAt = LocalDate.parse(createdAt);
 	}
 	
-	public void setFile(String file) {
+	public void setFile(File file) {
 		this.file = file;
 	}
 }
