@@ -48,6 +48,22 @@ public class TicketController {
 		return service.findByAging();
 	}
 	
+	@RequestMapping("/tickets/user/{id}")
+	public Page<Ticket> getUserTickets(@PathVariable Integer id, Pageable pageable) {
+		return service.findAllByUserID(id, pageable);
+	}
+	
+	@RequestMapping("/aging/{user}")
+	public Page<Ticket> getUserAgingTickets(@PathVariable User user, Pageable pageable) {
+		return service.findUserAgingTickets(user, pageable);
+	}
+	
+	@RequestMapping("/aging")
+	public List<Ticket> getAllAgingTickets() {
+		return service.findAllAgingTickets();
+	}
+
+	
 	@PostMapping("/tickets/create")
 	public ApiResponse save(Ticket ticket)  {
 		Ticket savedTicket = service.save(ticket);

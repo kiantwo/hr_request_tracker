@@ -31,26 +31,26 @@ INSERT INTO ticket_type(type_id, type_name, description) values(209, "Policy", "
 INSERT INTO ticket_type(type_id, type_name, description) values(210, "Others", "");
 INSERT INTO ticket_type(type_id, type_name, description) values(211, "HR Business Partner", "");
 
-INSERT into user_ticket(assignee_id, tracker_id) values(100, 200);
-INSERT into user_ticket(assignee_id, tracker_id) values(101, 201);
-INSERT into user_ticket(assignee_id, tracker_id) values(102, 202);
-INSERT into user_ticket(assignee_id, tracker_id) values(103, 203);
-INSERT into user_ticket(assignee_id, tracker_id) values(103, 204);
-INSERT into user_ticket(assignee_id, tracker_id) values(100, 205);
-INSERT into user_ticket(assignee_id, tracker_id) values(100, 206);
-INSERT into user_ticket(assignee_id, tracker_id) values(100, 207);
-INSERT into user_ticket(assignee_id, tracker_id) values(104, 208);
-INSERT into user_ticket(assignee_id, tracker_id) values(100, 209);
-INSERT into user_ticket(assignee_id, tracker_id) values(100, 210);
-INSERT into user_ticket(assignee_id, tracker_id) values(104, 211);
+INSERT into user_ticket(assignee_id, tracker_id) values(101, 200);
+INSERT into user_ticket(assignee_id, tracker_id) values(102, 201);
+INSERT into user_ticket(assignee_id, tracker_id) values(103, 202);
+INSERT into user_ticket(assignee_id, tracker_id) values(104, 203);
+INSERT into user_ticket(assignee_id, tracker_id) values(104, 204);
+INSERT into user_ticket(assignee_id, tracker_id) values(101, 205);
+INSERT into user_ticket(assignee_id, tracker_id) values(101, 206);
+INSERT into user_ticket(assignee_id, tracker_id) values(101, 207);
+INSERT into user_ticket(assignee_id, tracker_id) values(105, 208);
+INSERT into user_ticket(assignee_id, tracker_id) values(101, 209);
+INSERT into user_ticket(assignee_id, tracker_id) values(101, 210);
+INSERT into user_ticket(assignee_id, tracker_id) values(105, 211);
 
 INSERT INTO status(status_id, status_name, description) values (400, "Active", "");
 INSERT INTO status(status_id, status_name, description) values (401, "Inactive", "");
 INSERT INTO status(status_id, status_name, description) values (402, "Canceled", "");
 
 INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (300, 101, 200, "Request for salary increase", 400, "", "2022-10-01");
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (301, 102, 201, "Request for leave", 402, "Would like to take a vacation", "2022-10-03");
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (302, 103, 203, "Conflict with colleague", 401, "Keeps stealing my lunch", "2022-10-04");
-INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (303, 104, 203, "Request for transfer of management", 402,  "Would like to manage different area", "2022-11-22");
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (301, 101, 201, "Request for leave", 402, "Would like to take a vacation", "2022-10-03");
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (302, 101, 203, "Conflict with colleague", 401, "Keeps stealing my lunch", "2022-10-04");
+INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (303, 101, 203, "Request for transfer of management", 402,  "Would like to manage different area", "2022-11-22");
 INSERT into ticket(ticket_id, assignee_id, tracker_id, subject, status_id, description, created_at) values (304, 101, 205,"Request for team building", 400, "New training and seminars", "2022-11-25");
 

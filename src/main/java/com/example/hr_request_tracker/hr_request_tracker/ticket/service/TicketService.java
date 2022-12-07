@@ -37,6 +37,18 @@ public class TicketService implements ITicketService {
 	public List<Ticket> findByAging() {
 		return repository.findByAging();
 	}
+	
+	public Page<Ticket> findAllByUserID(Integer id, Pageable pageable) {
+		return repository.findAllByAssigneeUserID(id, pageable);
+	}
+	
+	public Page<Ticket> findUserAgingTickets(User user, Pageable pageable) {
+		return repository.findUserAgingTickets(user, pageable);
+	}
+	
+	public List<Ticket> findAllAgingTickets() {
+		return repository.findAllAgingTickets();
+	}
 		
 	public Integer delete(Integer id) throws Exception
 	{

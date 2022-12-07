@@ -21,6 +21,14 @@ import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 public interface ITicketRepository extends JpaRepository<Ticket, Integer> {
 	public Page<Ticket> findAll(Pageable pageable);
 	
+	public Page<Ticket> findAllByAssigneeUserID(Integer id, Pageable page);
+	
+	@Query("select t from Ticket t where t.assignee = :user and t.createdAt < CURDATE()")
+	public Page<Ticket> findUserAgingTickets(@Param("user") User user, Pageable pageable);
+	
+	@Query("select t from Ticket t where t.createdAt < CURDATE()")
+	public List<Ticket> findAllAgingTickets();
+	
 	@Modifying
 	@Query("update Ticket t set t.assignee = :assignee where t.ticketID = :id")
 	public Integer updateAssignee(@Param("id") Integer id, @Param("assignee") User assignee);

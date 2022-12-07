@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.hr_request_tracker.hr_request_tracker.common.models.ApiResponse;
-import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.user.messages.UserMessages;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 import com.example.hr_request_tracker.hr_request_tracker.user.service.IUserService;
@@ -32,20 +31,20 @@ public class UserController {
 		return service.findAll();
 	}
 	
-	@RequestMapping("/user/tickets/{user}")
-	public List<Ticket> getUserTickets(@PathVariable User user) {
-		return service.findUserTickets(user);
-	}
-	
-	@RequestMapping("/user/aging-tickets/{user}")
-	public List<Ticket> getUserAgingTickets(@PathVariable User user) {
-		return service.findUserAgingTickets(user);
-	}
-	
-	@RequestMapping("/admin/aging-tickets")
-	public List<Ticket> getAllAgingTickets() {
-		return service.findAllAgingTickets();
-	}
+//	@RequestMapping("/user/tickets/{id}")
+//	public Page<Ticket> getUserTickets(@PathVariable Integer id, Pageable pageable) {
+//		return service.findAllByUserID(id, pageable);
+//	}
+//	
+//	@RequestMapping("/user/aging-tickets/{user}")
+//	public List<Ticket> getUserAgingTickets(@PathVariable User user) {
+//		return service.findUserAgingTickets(user);
+//	}
+//	
+//	@RequestMapping("/admin/aging-tickets")
+//	public List<Ticket> getAllAgingTickets() {
+//		return service.findAllAgingTickets();
+//	}
 	
 	@PostMapping("/login")
 	public ApiResponse login(@RequestParam("username") String username, 
