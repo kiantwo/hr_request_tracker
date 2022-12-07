@@ -2,6 +2,8 @@ package com.example.hr_request_tracker.hr_request_tracker.ticket.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +19,8 @@ import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 
 @Repository
 public interface ITicketRepository extends JpaRepository<Ticket, Integer> {
+	public Page<Ticket> findAll(Pageable pageable);
+	
 	@Modifying
 	@Query("update Ticket t set t.assignee = :assignee where t.ticketID = :id")
 	public Integer updateAssignee(@Param("id") Integer id, @Param("assignee") User assignee);

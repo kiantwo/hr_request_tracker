@@ -7,6 +7,8 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,8 +39,8 @@ public class TicketController {
 	}
 	
 	@RequestMapping("/tickets")
-	public List<Ticket> getAll() {
-		return service.findAll();
+	public Page<Ticket> getAll(Pageable pageable) {
+		return service.findAllPageable(pageable);
 	}
 	
 	@RequestMapping("/tickets/aging")

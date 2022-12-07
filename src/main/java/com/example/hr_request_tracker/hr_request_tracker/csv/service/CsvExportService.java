@@ -31,7 +31,7 @@ public class CsvExportService {
 						ticket.getStatus().getStatusName(),
 						ticket.getSubject(),
 						ticket.getDescription(),
-						ticket.getFile(),
+						ticket.getFile() != null ? ticket.getFile().getFileName() : "",
 						ticket.getCreatedAt()
 				);
 			}
