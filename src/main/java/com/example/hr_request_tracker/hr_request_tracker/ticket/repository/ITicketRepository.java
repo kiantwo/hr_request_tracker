@@ -29,7 +29,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Integer> {
 	public Page<Ticket> findUserAgingTickets(@Param("user") User user, Pageable pageable);
 	
 	@Query("select t from Ticket t where t.createdAt < CURDATE() and t.status = 400")
-	public List<Ticket> findAllAgingTickets();
+	public Page<Ticket> findAllAgingTickets(Pageable page);
 		
 	@Modifying
 	@Query("update Ticket t set t.assignee = :assignee where t.ticketID = :id")

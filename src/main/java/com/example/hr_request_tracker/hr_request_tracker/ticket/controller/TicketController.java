@@ -59,8 +59,8 @@ public class TicketController {
 	}
 	
 	@RequestMapping("/aging")
-	public List<Ticket> getAllAgingTickets() {
-		return service.findAllAgingTickets();
+	public Page<Ticket> getAllAgingTickets(Pageable pageable) {
+		return service.findAllAgingTickets(pageable);
 	}
 	
 	@RequestMapping("/tickets/status/{id}")

@@ -50,8 +50,8 @@ public class TicketService implements ITicketService {
 		return repository.findUserAgingTickets(user, pageable);
 	}
 	
-	public List<Ticket> findAllAgingTickets() {
-		return repository.findAllAgingTickets();
+	public Page<Ticket> findAllAgingTickets(Pageable pageable) {
+		return repository.findAllAgingTickets(pageable);
 	}
 		
 	public Integer delete(Integer id) throws Exception
