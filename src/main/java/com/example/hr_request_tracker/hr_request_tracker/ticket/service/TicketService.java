@@ -42,6 +42,10 @@ public class TicketService implements ITicketService {
 		return repository.findAllByAssigneeUserID(id, pageable);
 	}
 	
+	public Page<Ticket> findAllByStatusStatusID(Integer id, Pageable pageable) {
+		return repository.findAllByStatusStatusID(id, pageable);
+	}
+	
 	public Page<Ticket> findUserAgingTickets(User user, Pageable pageable) {
 		return repository.findUserAgingTickets(user, pageable);
 	}

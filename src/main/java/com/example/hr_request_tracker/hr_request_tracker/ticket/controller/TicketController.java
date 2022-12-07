@@ -62,7 +62,11 @@ public class TicketController {
 	public List<Ticket> getAllAgingTickets() {
 		return service.findAllAgingTickets();
 	}
-
+	
+	@RequestMapping("/tickets/status/{id}")
+	public Page<Ticket> getTicketsByStatus(@PathVariable Integer id, Pageable pageable) {
+		return service.findAllByStatusStatusID(id, pageable);
+	}
 	
 	@PostMapping("/tickets/create")
 	public ApiResponse save(Ticket ticket)  {

@@ -23,12 +23,14 @@ public interface ITicketRepository extends JpaRepository<Ticket, Integer> {
 	
 	public Page<Ticket> findAllByAssigneeUserID(Integer id, Pageable page);
 	
-	@Query("select t from Ticket t where t.assignee = :user and t.createdAt < CURDATE()")
+	public Page<Ticket> findAllByStatusStatusID(Integer ID, Pageable page);
+	
+	@Query("select t from Ticket t where t.assignee = :user and t.createdAt < CURDATE() and t.status = 400")
 	public Page<Ticket> findUserAgingTickets(@Param("user") User user, Pageable pageable);
 	
-	@Query("select t from Ticket t where t.createdAt < CURDATE()")
+	@Query("select t from Ticket t where t.createdAt < CURDATE() and t.status = 400")
 	public List<Ticket> findAllAgingTickets();
-	
+		
 	@Modifying
 	@Query("update Ticket t set t.assignee = :assignee where t.ticketID = :id")
 	public Integer updateAssignee(@Param("id") Integer id, @Param("assignee") User assignee);
@@ -40,7 +42,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Integer> {
 	@Query("select t from Ticket t where t.createdAt < CURDATE()")
 	public List<Ticket> findByAging();
 	
-	@Query("select t.ticketID as ticketID, t.tracker as tracker, t.createdAt as createdAt " + "from Ticket as t group by t.ticketID, t.tracker having t.createdAt < CURDATE()")
+	@Query("select t.ticketID as ticketID, t.status as status, t.tracker as tracker, t.createdAt as createdAt " + "from Ticket as t group by t.ticketID, t.tracker having t.status = 400 and t.createdAt < CURDATE()")
 	public List<IAgingTicket> findByAgingCategory();
 	
 	@Query("select t.tracker as tracker, count(t.tracker) as trackerCount " + "from Ticket as t group by t.tracker")

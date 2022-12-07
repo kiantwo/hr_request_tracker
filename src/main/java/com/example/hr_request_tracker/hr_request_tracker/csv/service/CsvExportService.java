@@ -45,7 +45,7 @@ public class CsvExportService {
 		
 		try(CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT)) {
 			for(IAgingTicket ticket : tickets) {
-				csvPrinter.printRecord(ticket.getTicketID(), ticket.getTracker().getTypeName());
+				csvPrinter.printRecord(ticket.getTicketID(), ticket.getTracker().getTypeName(), ticket.getCreatedAt());
 			}
 		} catch(IOException e) {
 			System.out.println("Error while writing CSV " + e);
