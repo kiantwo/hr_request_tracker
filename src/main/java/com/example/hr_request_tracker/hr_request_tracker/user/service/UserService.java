@@ -5,11 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 import com.example.hr_request_tracker.hr_request_tracker.user.repository.IUserRepository;
 
@@ -27,19 +24,7 @@ public class UserService implements IUserService{
 	}
 
 	public List<User> findAll() {
-		return repository.findAll();
-	}
-	
-	public Page<Ticket> findAllByUserID(Integer id, Pageable pageable) {
-		return repository.findAllByUserID(id, pageable);
-	}
-	
-	public List<Ticket> findUserAgingTickets(User user) {
-		return repository.findUserAgingTickets(user);
-	}
-	
-	public List<Ticket> findAllAgingTickets() {
-		return repository.findAllAgingTickets();
+		return repository.findAllByUsernameNotAdmin();
 	}
 	
 	public User save(User user) {
