@@ -14,6 +14,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
 	@Query("select u from User u where u.username <> 'admin'")
 	public List<User> findAllByUsernameNotAdmin();
 		
-	@Query("select u from User u where u.username = :username and u.password = :password")
+	@Query("select u from User u where u.username = :username or u.email = :username and u.password = :password")
 	public User login(@Param("username") String username, @Param("password") String password);
 }
