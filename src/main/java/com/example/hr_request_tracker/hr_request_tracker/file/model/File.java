@@ -2,7 +2,6 @@ package com.example.hr_request_tracker.hr_request_tracker.file.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +29,7 @@ public class File {
 	@Column(name="file_data", length=100000)
 	private byte[] fileData;
 	
-	@OneToMany(mappedBy="file", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="file")
 	private Set<Ticket> tickets;
 	
 	public File() {}

@@ -9,14 +9,14 @@ USE hr_request;
 INSERT into role(role_id, role_name, role_abbv) values(500, "Admin", "ADMIN");
 INSERT into role(role_id, role_name, role_abbv) values(501, "Developer", "DEV");
 INSERT into role(role_id, role_name, role_abbv) values(502, "Project Manager", "PM");
-INSERT into role(role_id, role_name, role_abbv) values(503, "Humans Relation", "HR");
+INSERT into role(role_id, role_name, role_abbv) values(503, "Human Resources", "HR");
 
 INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (100, 500, "admin", "Admin", "", "123456", "admin@alliance.com");
-INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (101, 502, "saturnina", "Saturnina", "Alvarez", "123456", "saturnina@alliance.com");
-INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (102, 502, "rejine", "Rejine", "Alquisa", "123456", "alquisa@alliance.com");
-INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (103, 502, "pelisa", "Pelisa Jane", "Ligalig", "123456", "pjligalig@alliance.com");
-INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (104, 502, "giselle", "Ma. Giselle", "Mabunga", "123456", "giselle@alliance.com");
-INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (105, 502, "jasmine", "Jasmine", "Patalinghug", "123456", "jasminep@alliance.com");
+INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (101, 503, "saturnina", "Saturnina", "Alvarez", "123456", "saturnina@alliance.com");
+INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (102, 503, "rejine", "Rejine", "Alquisa", "123456", "alquisa@alliance.com");
+INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (103, 503, "pelisa", "Pelisa Jane", "Ligalig", "123456", "pjligalig@alliance.com");
+INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (104, 503, "giselle", "Ma. Giselle", "Mabunga", "123456", "giselle@alliance.com");
+INSERT into user(user_id, role_id, username, user_fname, user_lname, password, email) values (105, 503, "jasmine", "Jasmine", "Patalinghug", "123456", "jasminep@alliance.com");
 
 INSERT INTO ticket_type(type_id, type_name, description) values(200, "Benefits", "");
 INSERT INTO ticket_type(type_id, type_name, description) values(201, "Payroll", "");

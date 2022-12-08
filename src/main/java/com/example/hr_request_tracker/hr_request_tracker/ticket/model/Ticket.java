@@ -2,6 +2,7 @@ package com.example.hr_request_tracker.hr_request_tracker.ticket.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Ticket {
 	@JoinColumn(name="status_id")
 	private Status status;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="file_id")
 	private File file;
 	
