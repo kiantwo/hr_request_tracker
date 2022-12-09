@@ -21,6 +21,9 @@ import com.example.hr_request_tracker.hr_request_tracker.common.models.ApiRespon
 import com.example.hr_request_tracker.hr_request_tracker.csv.service.CsvExportService;
 import com.example.hr_request_tracker.hr_request_tracker.status.model.Status;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.messages.TicketMessages;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IAgingTicket;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.ITicketCount;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IUserCount;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.service.ITicketService;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
@@ -119,14 +122,19 @@ public class TicketController {
 		return ApiResponse.CreateError(TicketMessages.GENERIC_UNSUCCESSFUL_DELETE);
 	}
 	
-	@RequestMapping("/tickets/all")
+	@RequestMapping("/tickets/all/export")
 	public void exportAllTickets(HttpServletResponse response) throws IOException {
 		response.setContentType("text/csv");
 		response.addHeader("Content-Disposition", "attachment; filename=\"all_tickets.csv\"");
 		csvExportService.writeAllTicketsToCsv(response.getWriter());
 	}
-		
+	
 	@RequestMapping("/tickets/category/aging")
+	public List<IAgingTicket> getTicketsByAgingCategory() {
+		return service.findByAgingCategory();
+	}
+		
+	@RequestMapping("/tickets/category/aging/export")
 	public void exportByAgingCategory(HttpServletResponse response) throws IOException {
 		response.setContentType("text/csv");
 		response.addHeader("Content-Disposition", "attachment; filename=\"aging_tickets_per_category.csv\"");
@@ -134,6 +142,11 @@ public class TicketController {
 	}
 	
 	@RequestMapping("/tickets/category/count")
+	public List<ITicketCount> getTicketsByCountCategory() {
+		return service.findByCountCategory();
+	}
+	
+	@RequestMapping("/tickets/category/count/export")
 	public void exportByCountCategory(HttpServletResponse response) throws IOException {
 		response.setContentType("text/csv");
 		response.addHeader("Content-Disposition", "attachment; filename=\"ticket_count_category.csv\"");
@@ -141,6 +154,11 @@ public class TicketController {
 	}
 	
 	@RequestMapping("/tickets/user/count")
+	public List<IUserCount> getTicketsByCountUser() {
+		return service.findByCountUser();
+	}
+	
+	@RequestMapping("/tickets/user/count/export")
 	public void exportByCountUser(HttpServletResponse response) throws IOException {
 		response.setContentType("text/csv");
 		response.addHeader("Content-Disposition", "attachment; filename=\"user_count_category.csv\"");

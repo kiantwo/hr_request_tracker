@@ -50,7 +50,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Integer> {
 	@Query("select t from Ticket t where t.createdAt < CURDATE()")
 	public List<Ticket> findByAging();
 	
-	@Query("select t.ticketID as ticketID, t.status as status, t.tracker as tracker, t.createdAt as createdAt " + "from Ticket as t group by t.ticketID, t.tracker having t.status = 400 and t.createdAt < CURDATE()")
+	@Query("select t.ticketID as ticketID, t.status as status, t.assignee as assignee, t.subject as subject, t.tracker as tracker, t.createdAt as createdAt " + "from Ticket as t group by t.ticketID, t.tracker having t.status = 400 and t.createdAt < CURDATE()")
 	public List<IAgingTicket> findByAgingCategory();
 	
 	@Query("select t.tracker as tracker, count(t.tracker) as trackerCount " + "from Ticket as t group by t.tracker")
