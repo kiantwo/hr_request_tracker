@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,8 +40,8 @@ public class TicketController {
 	}
 	
 	@RequestMapping("/tickets")
-	public Page<Ticket> getAll(Pageable pageable) {
-		return service.findAllPageable(pageable);
+	public Page<Ticket> getAll(@Param("search") String search, @Param("filter") String filter, Pageable pageable) {
+		return service.findAllPageable(search, filter, pageable);
 	}
 	
 	@RequestMapping("/tickets/aging")
@@ -62,12 +63,7 @@ public class TicketController {
 	public Page<Ticket> getAllAgingTickets(Pageable pageable) {
 		return service.findAllAgingTickets(pageable);
 	}
-	
-	@RequestMapping("/tickets/status/{id}")
-	public Page<Ticket> getTicketsByStatus(@PathVariable Integer id, Pageable pageable) {
-		return service.findAllByStatusStatusID(id, pageable);
-	}
-	
+		
 	@PostMapping("/tickets/create")
 	public ApiResponse save(Ticket ticket)  {
 		Ticket savedTicket = service.save(ticket);

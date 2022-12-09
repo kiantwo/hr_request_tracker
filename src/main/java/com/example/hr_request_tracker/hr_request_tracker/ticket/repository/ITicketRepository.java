@@ -21,10 +21,13 @@ import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 public interface ITicketRepository extends JpaRepository<Ticket, Integer> {
 	public Page<Ticket> findAll(Pageable pageable);
 	
+	@Query("select t from Ticket t where "
+			+ "(:search is null or concat(t.subject, ' ', t.assignee.userFName, ' ', t.status.statusName, ' ', t.tracker.typeName) "
+			+ " LIKE %:search%) and (:filter is null or t.status.statusName = :filter)")
+	public Page<Ticket> search(@Param("search") String search, @Param("filter") String filter, Pageable pageable);
+	
 	public Page<Ticket> findAllByAssigneeUserID(Integer id, Pageable page);
-	
-	public Page<Ticket> findAllByStatusStatusID(Integer ID, Pageable page);
-	
+		
 	@Query("select t from Ticket t where t.assignee = :user and t.createdAt < CURDATE() and t.status = 400")
 	public Page<Ticket> findUserAgingTickets(@Param("user") User user, Pageable pageable);
 	

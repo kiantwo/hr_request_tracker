@@ -13,9 +13,8 @@ import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
 public interface ITicketService {
 	public Optional<Ticket> findById(int id);
 	public List<Ticket> findAll();
-	public Page<Ticket> findAllPageable(Pageable pageable);
+	public Page<Ticket> findAllPageable(String search, String filter, Pageable pageable);
 	public Page<Ticket> findAllByUserID(Integer id, Pageable pageable);
-	public Page<Ticket> findAllByStatusStatusID(Integer id, Pageable pageable);
 	public Page<Ticket> findUserAgingTickets(User user, Pageable pageable);
 	public Page<Ticket> findAllAgingTickets(Pageable pageable);
 	public List<Ticket> findByAging();
