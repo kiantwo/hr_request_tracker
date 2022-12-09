@@ -62,7 +62,10 @@ public class CsvExportService {
 		
 		try(CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT)) {
 			for(ITicketCount ticket: tickets) {
-				csvPrinter.printRecord(ticket.getTracker().getTypeName(), ticket.getTrackerCount());
+				csvPrinter.printRecord(
+						ticket.getTracker().getTicketTypeID(),
+						ticket.getTracker().getTypeName(), ticket.getTrackerCount()
+				);
 			}
 		} catch(IOException e) {
 			System.out.println("Error while writing CSV " + e);
@@ -74,7 +77,10 @@ public class CsvExportService {
 		
 		try(CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT)) {
 			for(IUserCount user: users) {
-				csvPrinter.printRecord(user.getUser().getUserID(), user.getUserCount());
+				csvPrinter.printRecord(
+						user.getUser().getUserID(), user.getUser().getUserFName(),
+						user.getUser().getUserLName(), user.getUserCount()
+				);
 			}
 		} catch(IOException e) {
 			System.out.println("Error while writing CSV " + e);
