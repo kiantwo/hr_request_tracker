@@ -38,6 +38,10 @@ public class UserService implements IUserService{
 	public User update(User user) {
 		return repository.save(user);
 	}
+	
+	public Integer updatePassword(Integer id, String password) {
+		return repository.updatePassword(id, password);
+	}
 
 	public Integer deleteById(Integer id) throws Exception {
 		try {

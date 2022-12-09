@@ -71,6 +71,17 @@ public class UserController {
 		return ApiResponse.CreateError(UserMessages.GENERIC_UNSUCCESSFUL_UPDATE);
 	}
 	
+	@PostMapping("/reset-password/{id}")
+	public ApiResponse updatePassword(@PathVariable Integer id, @RequestParam("password") String password) {
+		int result = service.updatePassword(id, password);
+		
+		if(result == 1) {
+			return ApiResponse.CreateSuccess(result, UserMessages.PASSWORD_SUCCESSFULLY_UPDATED);
+		}
+		
+		return ApiResponse.CreateError(UserMessages.GENERIC_UNSUCCESSFUL_UPDATE);
+	}
+	
 	@DeleteMapping("/users/delete/{id}")
 	public ApiResponse deleteById(@PathVariable final int id) throws Exception {
 		int result = service.deleteById(id);

@@ -9,4 +9,6 @@ public interface UserMessages extends Messages {
 	
 	String USER_SUCCESSFULLY_LOGGED = "User successfully logged in.";
 	String USER_UNSUCCESSFUL_LOGGED = "User not found.";
+	
+	String PASSWORD_SUCCESSFULLY_UPDATED = "Password successfully updated!";
 }

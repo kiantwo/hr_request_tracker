@@ -12,5 +12,6 @@ public interface IUserService {
 	public List<User> findAll();
 	public User save(User user);
 	public User update(User user);
+	public Integer updatePassword(Integer id, String password);
 	public Integer deleteById(Integer id) throws Exception;
 }
