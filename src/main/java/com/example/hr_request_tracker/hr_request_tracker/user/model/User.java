@@ -8,12 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
 
+import com.example.hr_request_tracker.hr_request_tracker.authentication.model.Token;
+import com.example.hr_request_tracker.hr_request_tracker.role.model.Role;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.ticket_type.model.TicketType;
 
@@ -35,12 +37,14 @@ public class User {
 	@OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL)
 	private Set<Ticket> tickets;
 	
-	@ManyToMany
-    @JoinTable(
-            name = "user_ticket",
-            joinColumns = {@JoinColumn(name = "assignee_id", referencedColumnName = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "tracker_id", referencedColumnName = "type_id")}
-    )
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Token> tokens;
+	
+	@ManyToOne
+	@JoinColumn(name="role_id")
+	private Role role;
+	
+	@ManyToMany(mappedBy="defaultAssignee")
 	private Set<TicketType> assignedTicketType;
 	
 	public int getUserID() {
@@ -66,6 +70,10 @@ public class User {
 	public String getUserEmail() {
 		return this.email;
 	}
+	
+	public Role getUserRole() {
+		return this.role;
+	}
 			
  	public void setUserID(final int id) {
 		this.userID = id;
@@ -89,5 +97,9 @@ public class User {
 	
 	public void setUserEmail(final String email) {
 		this.email = email;
+	}
+	
+	public void setUserRole(final Role role) {
+		this.role = role;
 	}
 }

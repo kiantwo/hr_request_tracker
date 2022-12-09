@@ -1,5 +1,6 @@
 package com.example.hr_request_tracker.hr_request_tracker.ticket_type.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,10 +33,15 @@ public class TicketType {
 	private String description;
 	
 	@OneToMany(mappedBy = "tracker", cascade = CascadeType.ALL)
-	private Set<Ticket> tickets;
+	private Set<Ticket> tickets = new HashSet<>();
 	
-	@ManyToMany(mappedBy="assignedTicketType")
-	private Set<User> defaultAssignee;
+	@ManyToMany
+    @JoinTable(
+            name = "user_ticket",
+            joinColumns = @JoinColumn(name = "tracker_id", referencedColumnName = "type_id"),
+            inverseJoinColumns = @JoinColumn(name = "assignee_id", referencedColumnName = "user_id")
+    )
+	private Set<User> defaultAssignee = new HashSet<>();
 	
 	public int getTicketTypeID() {
 		return this.ticketTypeID;
@@ -55,11 +63,15 @@ public class TicketType {
 		this.ticketTypeID = ticketTypeID;
 	}
 	
-	public void setTicketTypeName(String typeName) {
+	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
 	
-	public void setTicketTypeDescription(String description) {
+	public void setDescription(String description) {
 		this.description = description;
-	}	
+	}
+	
+	public void setDefaultAssignee(User defaultAssignee) {
+		this.defaultAssignee.add(defaultAssignee);
+	}
 }

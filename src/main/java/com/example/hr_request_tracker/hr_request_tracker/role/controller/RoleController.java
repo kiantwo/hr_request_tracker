@@ -1,62 +1,65 @@
 package com.example.hr_request_tracker.hr_request_tracker.role.controller;
-//package com.example.hr_request_tracker.hr_request_tracker.controller;
-//
-//import java.io.IOException;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.DeleteMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import com.example.hr_request_tracker.hr_request_tracker.model.Role;
-//import com.example.hr_request_tracker.hr_request_tracker.service.IRoleService;
-//
-//@RestController
-//public class RoleController {
-//	private IRoleService service;
-//	
-//	@Autowired
-//	public RoleController(final IRoleService service) {
-//		this.service = service;
-//	}
-//	
-//	@RequestMapping("/role/{id}")
-//	public String getByID(final int id) {
-//		return service.findById(id);
-//	}
-//	
-//	@RequestMapping("/roles")
-//	public String getAll() {
-//		return service.findAll();
-//	}
-//	
-//	@PostMapping("/roles")
-//	public int save() throws IOException {		
-//		if(service.save(new Role()) <= 0) {
-//			throw new IOException("Something went wrong in the database.");
-//		} else {
-//			return 1;
-//		}
-//	}
-//	
-//	@PostMapping("/roles/update/{id}")
-//	public int update(@PathVariable final int id) throws IOException {
-//		
-//		if(service.update(new Role()) <= 0) {
-//			throw new IOException("Something went wrong in the database");
-//		} else {
-//			return 1;
-//		}
-//	}
-//	
-//	@DeleteMapping("/roles/delete/{id}")
-//	public int deleteById(@PathVariable final int id) throws IOException {
-//		if(service.deleteById(id) <= 0) {
-//			throw new IOException("Something went wrong in the database.");
-//		} else {	
-//			return 1;
-//		}
-//	}
-//}
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.hr_request_tracker.hr_request_tracker.common.models.ApiResponse;
+import com.example.hr_request_tracker.hr_request_tracker.role.messages.RoleMessages;
+import com.example.hr_request_tracker.hr_request_tracker.role.model.Role;
+import com.example.hr_request_tracker.hr_request_tracker.role.service.IRoleService;
+
+@RestController
+public class RoleController {
+	@Autowired
+	private IRoleService service;
+	
+	@RequestMapping("/role/{id}")
+	public Optional<Role> getByID(@PathVariable int id) {
+		return service.findById(id);
+	}
+	
+	@RequestMapping("/roles")
+	public List<Role> getAll() {
+		return service.findAll();
+	}
+	
+	@PostMapping("/roles/create")
+	public ApiResponse save(Role role)  {
+		Role savedRole= service.save(role);
+
+		if (savedRole != null) {
+			return ApiResponse.CreateSuccess(savedRole, RoleMessages.ROLE_SUCCESSFULLY_SAVED);
+		}
+
+		return ApiResponse.CreateError(RoleMessages.GENERIC_UNSUCCESSFUL_SAVE);
+	}
+	
+	@PostMapping("/roles/update")
+	public ApiResponse update(Role role) {
+		Role updatedRole = service.update(role);
+		
+		if(updatedRole != null) {
+			return ApiResponse.CreateSuccess(updatedRole, RoleMessages.ROLE_SUCCESFULLY_UPDATED);
+		}
+		
+		return ApiResponse.CreateError(RoleMessages.GENERIC_UNSUCCESSFUL_UPDATE);
+	}
+	
+	@DeleteMapping("/roles/delete/{id}")
+	public ApiResponse delete(@PathVariable Integer id) throws Exception {
+		int result = service.delete(id);
+		
+		if(result == 1) {
+			return ApiResponse.CreateSuccess(result, RoleMessages.ROLE_SUCCESSFULLY_DELETED);
+		}
+		
+		return ApiResponse.CreateError(RoleMessages.GENERIC_UNSUCCESSFUL_DELETE);
+	}
+}

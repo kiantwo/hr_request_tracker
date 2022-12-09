@@ -5,9 +5,15 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.hr_request_tracker.hr_request_tracker.status.model.Status;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IAgingTicket;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.ITicketCount;
+import com.example.hr_request_tracker.hr_request_tracker.ticket.model.IUserCount;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.model.Ticket;
 import com.example.hr_request_tracker.hr_request_tracker.ticket.repository.ITicketRepository;
 import com.example.hr_request_tracker.hr_request_tracker.user.model.User;
@@ -22,14 +28,57 @@ public class TicketService implements ITicketService {
 		return repository.findById(id);
 	}
 	
-	public List<Ticket> findAll()
-	{
+	public List<Ticket> findAll() {
 		return repository.findAll();
 	}
 	
-	public void delete(Integer id)
+	public Page<Ticket> findAllPageable(String search, String filter, Pageable pageable)
 	{
-		repository.deleteById(id);
+		if(search == null && filter == null) {
+			return repository.findAll(pageable);
+		}
+		return repository.searchAll(search != null ? search : "", filter, pageable);
+	}
+	
+	public List<Ticket> findByAging() {
+		return repository.findByAging();
+	}
+	
+	public Page<Ticket> findAllByUserID(String search, Integer id, Pageable pageable) {
+		if(search == null) {
+			return repository.findAllByAssigneeUserID(id, pageable);
+		}
+		return repository.searchAllUserTickets(search, id, pageable);
+	}
+		
+	public Page<Ticket> findUserAgingTickets(User user, Pageable pageable) {
+		return repository.findUserAgingTickets(user, pageable);
+	}
+	
+	public Page<Ticket> findAllAgingTickets(Pageable pageable) {
+		return repository.findAllAgingTickets(pageable);
+	}
+		
+	public List<IAgingTicket> findByAgingCategory() {
+		return repository.findByAgingCategory();
+	}
+	
+	public List<ITicketCount> findByCountCategory() {
+		return repository.findByCountCategory();
+	}
+	
+	public List<IUserCount> findByCountUser() {
+		return repository.findByCountUser();
+	}
+	
+	public Integer delete(Integer id) throws Exception
+	{
+		try {
+			repository.deleteById(id);
+			return 1;
+		} catch(EmptyResultDataAccessException e) {
+			return 0;
+		}
 	}
 	
 	public Ticket save(Ticket ticket)
