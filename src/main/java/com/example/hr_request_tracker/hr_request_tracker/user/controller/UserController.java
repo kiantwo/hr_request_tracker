@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,25 +27,15 @@ public class UserController {
 		return service.findById(id);
 	}
 	
+	@RequestMapping("/forgot-password")
+	public Optional<User> getByEmail(@Param("email") String email) {
+		return service.findByEmail(email);
+	}
+	
 	@RequestMapping("/users")
 	public List<User> getAll() {
 		return service.findAll();
 	}
-	
-//	@RequestMapping("/user/tickets/{id}")
-//	public Page<Ticket> getUserTickets(@PathVariable Integer id, Pageable pageable) {
-//		return service.findAllByUserID(id, pageable);
-//	}
-//	
-//	@RequestMapping("/user/aging-tickets/{user}")
-//	public List<Ticket> getUserAgingTickets(@PathVariable User user) {
-//		return service.findUserAgingTickets(user);
-//	}
-//	
-//	@RequestMapping("/admin/aging-tickets")
-//	public List<Ticket> getAllAgingTickets() {
-//		return service.findAllAgingTickets();
-//	}
 	
 	@PostMapping("/login")
 	public ApiResponse login(@RequestParam("username") String username, 

@@ -19,6 +19,10 @@ public class UserService implements IUserService{
 		return repository.findById(id);
 	}
 	
+	public Optional<User> findByEmail(String email) {
+		return repository.findByEmail(email);
+	}
+	
 	public User login(String username, String password) {
 		return repository.login(username, password);
 	}
