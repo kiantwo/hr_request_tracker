@@ -14,7 +14,7 @@ public interface ITicketService {
 	public Optional<Ticket> findById(int id);
 	public List<Ticket> findAll();
 	public Page<Ticket> findAllPageable(String search, String filter, Pageable pageable);
-	public Page<Ticket> findAllByUserID(Integer id, Pageable pageable);
+	public Page<Ticket> findAllByUserID(String search, Integer id, Pageable pageable);
 	public Page<Ticket> findUserAgingTickets(User user, Pageable pageable);
 	public Page<Ticket> findAllAgingTickets(Pageable pageable);
 	public List<Ticket> findByAging();

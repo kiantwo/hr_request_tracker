@@ -34,15 +34,18 @@ public class TicketService implements ITicketService {
 		if(search == null && filter == null) {
 			return repository.findAll(pageable);
 		}
-		return repository.search(search != null ? search : "", filter, pageable);
+		return repository.searchAll(search != null ? search : "", filter, pageable);
 	}
 	
 	public List<Ticket> findByAging() {
 		return repository.findByAging();
 	}
 	
-	public Page<Ticket> findAllByUserID(Integer id, Pageable pageable) {
-		return repository.findAllByAssigneeUserID(id, pageable);
+	public Page<Ticket> findAllByUserID(String search, Integer id, Pageable pageable) {
+		if(search == null) {
+			return repository.findAllByAssigneeUserID(id, pageable);
+		}
+		return repository.searchAllUserTickets(search, id, pageable);
 	}
 		
 	public Page<Ticket> findUserAgingTickets(User user, Pageable pageable) {

@@ -50,8 +50,8 @@ public class TicketController {
 	}
 	
 	@RequestMapping("/tickets/user/{id}")
-	public Page<Ticket> getUserTickets(@PathVariable Integer id, Pageable pageable) {
-		return service.findAllByUserID(id, pageable);
+	public Page<Ticket> getUserTickets(@Param("search") String search, @PathVariable Integer id, Pageable pageable) {
+		return service.findAllByUserID(search, id, pageable);
 	}
 	
 	@RequestMapping("/aging/{user}")
